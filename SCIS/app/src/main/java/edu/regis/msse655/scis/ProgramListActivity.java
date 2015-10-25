@@ -43,8 +43,10 @@ public class ProgramListActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                // start the course list activity
+                Intent detailIntent = new Intent(ProgramListActivity.this, ShareActivity.class);
+                //detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_ID, id); // TODO: add the id of the program
+                startActivity(detailIntent);
             }
         });
 
@@ -76,9 +78,7 @@ public class ProgramListActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.program_list, menu);
-        return true;
+        return false;
     }
 
     @Override
@@ -87,11 +87,6 @@ public class ProgramListActivity extends AppCompatActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
 
         return super.onOptionsItemSelected(item);
     }
@@ -102,18 +97,14 @@ public class ProgramListActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        if (id == R.id.nav_programs) {
+            // do nothing? programs already displayed?
+        } else if (id == R.id.nav_feedback) {
+            Intent detailIntent = new Intent(this, FeedbackActivity.class);
+            startActivity(detailIntent);
+        } else if (id == R.id.nav_chat) {
+            Intent detailIntent = new Intent(this, ChatActivity.class);
+            startActivity(detailIntent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -128,4 +119,5 @@ public class ProgramListActivity extends AppCompatActivity
         //detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_ID, id); // TODO: add the id of the program
         startActivity(detailIntent);
     }
+
 }

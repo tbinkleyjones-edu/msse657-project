@@ -3,4 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="regisBlue">#002B49</color>
+    <color name="regisGold">#FFD200</color>
+    <color name="regisCream">#E7DBA9</color>
 </resources>
