@@ -1,6 +1,9 @@
 package edu.regis.msse655.scis;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -13,8 +16,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * An activity representing a list of Programs, which when touched,
+ * lead to a {@link CourseListActivity} representing
+ * item details.
+ * <p>
+ * The activity makes heavy use of fragments. The list of items is a
+ * {@link ProgramListFragment}.
+ * <p>
+ * This activity also implements the required
+ * {@link ProgramListFragment.Callbacks} interface
+ * to listen for item selections.
+ */
+
 public class ProgramListActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, ProgramListFragment.Callbacks {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +56,12 @@ public class ProgramListActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
+        if (appBarLayout != null) {
+            appBarLayout.setTitle(getString(R.string.regis_university));
+        }
+
     }
 
     @Override
@@ -97,5 +119,13 @@ public class ProgramListActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onItemSelected(String id) {
+        // start the course list activity
+        Intent detailIntent = new Intent(this, CourseListActivity.class);
+        //detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_ID, id); // TODO: add the id of the program
+        startActivity(detailIntent);
     }
 }

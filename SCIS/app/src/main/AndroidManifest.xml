@@ -18,6 +18,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".CourseListActivity"
+            android:label="@string/title_course_list"
+            android:parentActivityName=".ProgramListActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.regis.msse655.scis.ProgramListActivity" />
+        </activity>
+        <activity
+            android:name=".CourseDetailActivity"
+            android:label="@string/title_course_detail"
+            android:parentActivityName=".CourseListActivity"
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="edu.regis.msse655.scis.CourseListActivity" />
+        </activity>
     </application>
 
 </manifest>
