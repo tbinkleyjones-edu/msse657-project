@@ -4,10 +4,15 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import edu.regis.msse655.scis.dummy.DummyContent;
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.regis.msse655.scis.components.ProgramArrayAdapter;
+import edu.regis.msse655.scis.model.Program;
+import edu.regis.msse655.scis.service.IProgramAndCoursesService;
+import edu.regis.msse655.scis.service.ServiceLocator;
 
 /**
  * A list fragment representing a list of Programs.
@@ -16,6 +21,8 @@ import edu.regis.msse655.scis.dummy.DummyContent;
  * interface.
  */
 public class ProgramListFragment extends ListFragment {
+
+    private ProgramArrayAdapter arrayAdapter;
 
     /**
      * The fragment's current callback object, which is notified of list item
@@ -31,8 +38,9 @@ public class ProgramListFragment extends ListFragment {
     public interface Callbacks {
         /**
          * Callback for when an item has been selected.
+         * @param program
          */
-        public void onItemSelected(String id);
+        public void onItemSelected(Program program);
     }
 
     /**
@@ -41,7 +49,7 @@ public class ProgramListFragment extends ListFragment {
      */
     private static Callbacks sDummyCallbacks = new Callbacks() {
         @Override
-        public void onItemSelected(String id) {
+        public void onItemSelected(Program program) {
         }
     };
 
@@ -56,12 +64,21 @@ public class ProgramListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
+        arrayAdapter = new ProgramArrayAdapter(
                 getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                DummyContent.ITEMS));
+                new ArrayList<Program>()
+        );
+        setListAdapter(arrayAdapter);
+
+        ServiceLocator.getProgramAndCoursesService().getProgramsAsync(
+                new IProgramAndCoursesService.ProgramCallback() {
+
+                    @Override
+                    public void execute(List<Program> programs) {
+                        arrayAdapter.clear();
+                        arrayAdapter.addAll(programs);
+                    }
+                });
     }
 
     @Override
@@ -96,7 +113,8 @@ public class ProgramListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+        Program program = arrayAdapter.getItem(position);
+        mCallbacks.onItemSelected(program);
     }
 
     /**

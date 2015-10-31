@@ -1,11 +1,9 @@
 package edu.regis.msse655.scis;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -15,6 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import edu.regis.msse655.scis.model.Program;
+import edu.regis.msse655.scis.service.ProgramsAndCoursesServiceRestImpl;
+import edu.regis.msse655.scis.service.ServiceLocator;
 
 /**
  * An activity representing a list of Programs, which when touched,
@@ -35,6 +37,10 @@ public class ProgramListActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // initialize the ServiceLocator
+        ServiceLocator.createInstance(new ProgramsAndCoursesServiceRestImpl());
+
         setContentView(R.layout.activity_program_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -113,10 +119,10 @@ public class ProgramListActivity extends AppCompatActivity
     }
 
     @Override
-    public void onItemSelected(String id) {
+    public void onItemSelected(Program program) {
         // start the course list activity
         Intent detailIntent = new Intent(this, CourseListActivity.class);
-        //detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_ID, id); // TODO: add the id of the program
+        detailIntent.putExtra(IntentConstants.PROGRAM, program);
         startActivity(detailIntent);
     }
 

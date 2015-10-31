@@ -9,6 +9,8 @@ import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.view.MenuItem;
 
+import edu.regis.msse655.scis.model.Program;
+
 /**
  * An activity representing a single Course detail screen. This
  * activity is only used on handset devices. On tablet-size devices,
@@ -53,8 +55,8 @@ public class CourseDetailActivity extends AppCompatActivity {
             // Create the detail fragment and add it to the activity
             // using a fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(CourseDetailFragment.ARG_ITEM_ID,
-                    getIntent().getStringExtra(CourseDetailFragment.ARG_ITEM_ID));
+            arguments.putString(CourseDetailFragment.ARG_ITEM_NAME,
+                    getIntent().getStringExtra(CourseDetailFragment.ARG_ITEM_NAME));
             CourseDetailFragment fragment = new CourseDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
@@ -73,7 +75,12 @@ public class CourseDetailActivity extends AppCompatActivity {
             //
             // http://developer.android.com/design/patterns/navigation.html#up-vs-back
             //
-            navigateUpTo(new Intent(this, CourseListActivity.class));
+            Intent intent = getIntent();
+            Program program = (Program)intent.getSerializableExtra(IntentConstants.PROGRAM);
+
+            Intent upIntent = new Intent(this, CourseListActivity.class);
+            upIntent.putExtra(IntentConstants.PROGRAM, program);
+            navigateUpTo(upIntent);
             return true;
         }
         return super.onOptionsItemSelected(item);

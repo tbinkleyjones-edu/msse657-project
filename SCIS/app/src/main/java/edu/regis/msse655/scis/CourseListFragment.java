@@ -1,13 +1,22 @@
 package edu.regis.msse655.scis;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import edu.regis.msse655.scis.components.CourseArrayAdapter;
 import edu.regis.msse655.scis.dummy.DummyContent;
+import edu.regis.msse655.scis.model.Course;
+import edu.regis.msse655.scis.model.Program;
+import edu.regis.msse655.scis.service.IProgramAndCoursesService;
+import edu.regis.msse655.scis.service.ServiceLocator;
 
 /**
  * A list fragment representing a list of Courses. This fragment
@@ -19,6 +28,8 @@ import edu.regis.msse655.scis.dummy.DummyContent;
  * interface.
  */
 public class CourseListFragment extends ListFragment {
+
+    private CourseArrayAdapter arrayAdapter;
 
     /**
      * The serialization (saved instance state) Bundle key representing the
@@ -46,7 +57,7 @@ public class CourseListFragment extends ListFragment {
         /**
          * Callback for when an item has been selected.
          */
-        public void onItemSelected(String id);
+        public void onItemSelected(Course course);
     }
 
     /**
@@ -55,7 +66,7 @@ public class CourseListFragment extends ListFragment {
      */
     private static Callbacks sDummyCallbacks = new Callbacks() {
         @Override
-        public void onItemSelected(String id) {
+        public void onItemSelected(Course course) {
         }
     };
 
@@ -70,12 +81,23 @@ public class CourseListFragment extends ListFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // TODO: replace with a real list adapter.
-        setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(
+        arrayAdapter = new CourseArrayAdapter(
                 getActivity(),
-                android.R.layout.simple_list_item_activated_1,
-                android.R.id.text1,
-                DummyContent.ITEMS));
+                new ArrayList<Course>()
+        );
+        setListAdapter(arrayAdapter);
+
+        Intent intent = getActivity().getIntent();
+        Program program = (Program)intent.getSerializableExtra(IntentConstants.PROGRAM);
+
+        ServiceLocator.getProgramAndCoursesService().getCoursesAsync(program.getId(),
+                new IProgramAndCoursesService.CourseCallback() {
+                    @Override
+                    public void execute(List<Course> courses) {
+                        arrayAdapter.clear();
+                        arrayAdapter.addAll(courses);
+                    }
+                });
     }
 
     @Override
@@ -115,7 +137,8 @@ public class CourseListFragment extends ListFragment {
 
         // Notify the active callbacks interface (the activity, if the
         // fragment is attached to one) that an item has been selected.
-        mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+        Course course = arrayAdapter.getItem(position);
+        mCallbacks.onItemSelected(course);
     }
 
     @Override
