@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_programs"
+        android:icon="@android:drawable/ic_menu_agenda"
+        android:title="@string/programs" />
+    <item
+        android:id="@+id/nav_feedback"
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="@string/feedback" />
+    <item
+        android:id="@+id/nav_chat"
+        android:icon="@android:drawable/stat_notify_chat"
+        android:title="@string/chat" />
+
+</menu>
