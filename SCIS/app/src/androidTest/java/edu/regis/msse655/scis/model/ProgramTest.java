@@ -8,6 +8,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.List;
 
 /**
  * Created by Tim on 10/31/15.
@@ -36,6 +37,15 @@ public class ProgramTest extends ApplicationTestCase<Application> {
         Course clone = (Course) oInputStream.readObject();
 
         assertEquals(original, clone);
+    }
+
+    @SmallTest
+    public void testFromJsonShouldProduceListOfObjects() throws Exception {
+        String json = "[{\"id\":1,\"name\":\"CIS\"},{\"id\":2,\"name\":\"CN\"}]";
+        List<Program> programs = Programs.fromJson(json);
+        assertNotNull(programs);
+        assertEquals(2, programs.size());
+        assertTrue(programs.get(1).getName().equals("CN"));
     }
 
 }

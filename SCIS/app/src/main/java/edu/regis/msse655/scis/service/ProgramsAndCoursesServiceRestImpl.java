@@ -1,27 +1,28 @@
 package edu.regis.msse655.scis.service;
 
-import java.util.Arrays;
+import android.util.Log;
 
-import edu.regis.msse655.scis.model.Course;
-import edu.regis.msse655.scis.model.Program;
+import edu.regis.msse655.scis.service.tasks.GetCoursesTask;
+import edu.regis.msse655.scis.service.tasks.GetProgramsTask;
 
 /**
  * Created by Tim on 10/31/15.
  */
 public class ProgramsAndCoursesServiceRestImpl implements IProgramAndCoursesService {
+
+    public static final String HOST = "http://regisscis.net";
+    public static final String PROGRAMS = HOST + "/Regis2/webresources/regis2.program";
+    public static final String COURSES = HOST + "/Regis2/webresources/regis2.course";
+
     @Override
     public void getProgramsAsync(ProgramCallback callback) {
-
-        callback.execute(Arrays.asList(
-                new Program(1, "CIS"),
-                new Program(2, "CN")
-        ));
+        Log.i("ProgramsAndCoursesSRI", "getProgramsAsync()");
+        new GetProgramsTask(callback).execute(PROGRAMS);
     }
 
     @Override
     public void getCoursesAsync(int programId, CourseCallback callback) {
-        callback.execute(Arrays.asList(
-                new Course(1,"CIS 206 Business Software Applications")
-        ));
+        Log.i("ProgramsAndCoursesSRI", "getCoursesAsync()");
+        new GetCoursesTask(programId, callback).execute(COURSES);
     }
 }
