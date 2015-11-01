@@ -12,6 +12,9 @@ import android.view.View;
 
 import android.view.MenuItem;
 
+import edu.regis.msse655.scis.model.Course;
+import edu.regis.msse655.scis.model.Program;
+
 /**
  * An activity representing a list of Courses. This activity
  * has different presentations for handset and tablet-size devices. On
@@ -74,7 +77,9 @@ public class CourseListActivity extends AppCompatActivity
 
         CollapsingToolbarLayout appBarLayout = (CollapsingToolbarLayout) findViewById(R.id.toolbar_layout);
         if (appBarLayout != null) {
-            appBarLayout.setTitle("Course One");
+            Intent intent = getIntent();
+            Program program = (Program)intent.getSerializableExtra(IntentConstants.PROGRAM);
+            appBarLayout.setTitle(program.getName());
         }
 
     }
@@ -101,13 +106,13 @@ public class CourseListActivity extends AppCompatActivity
      * indicating that the item with the given ID was selected.
      */
     @Override
-    public void onItemSelected(String id) {
+    public void onItemSelected(Course course) {
         if (mTwoPane) {
             // In two-pane mode, show the detail view in this activity by
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putString(CourseDetailFragment.ARG_ITEM_ID, id);
+            arguments.putInt(CourseDetailFragment.ARG_ITEM_ID, course.getId());
             CourseDetailFragment fragment = new CourseDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()
@@ -117,8 +122,13 @@ public class CourseListActivity extends AppCompatActivity
         } else {
             // In single-pane mode, simply start the detail activity
             // for the selected item ID.
+            Intent intent = getIntent();
+            Program program = (Program)intent.getSerializableExtra(IntentConstants.PROGRAM);
+
             Intent detailIntent = new Intent(this, CourseDetailActivity.class);
-            detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_ID, id);
+            detailIntent.putExtra(IntentConstants.PROGRAM, program);
+            detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_ID, course.getId());
+            detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_NAME, course.getName());
             startActivity(detailIntent);
         }
     }
