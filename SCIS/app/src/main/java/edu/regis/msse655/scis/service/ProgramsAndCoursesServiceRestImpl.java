@@ -6,7 +6,8 @@ import edu.regis.msse655.scis.service.tasks.GetCoursesTask;
 import edu.regis.msse655.scis.service.tasks.GetProgramsTask;
 
 /**
- * Created by Tim on 10/31/15.
+ * A ProgramsAndCourseService implementation that uses HttpUrlConnection to asynchronously
+ * retrieve data from the Regs REST web service.
  */
 public class ProgramsAndCoursesServiceRestImpl implements IProgramAndCoursesService {
 

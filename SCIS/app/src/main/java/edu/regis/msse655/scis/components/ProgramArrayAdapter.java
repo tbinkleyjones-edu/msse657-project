@@ -8,7 +8,7 @@ import java.util.List;
 import edu.regis.msse655.scis.model.Program;
 
 /**
- * Created by Tim on 10/31/15.
+ * An ArrayAdapter implementation for Program objects. Uses the built in simple_list_item_activated_1 layout.
  */
 public class ProgramArrayAdapter extends ArrayAdapter<Program> {
 

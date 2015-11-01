@@ -3,7 +3,7 @@ package edu.regis.msse655.scis.model;
 import java.io.Serializable;
 
 /**
- * Created by Tim on 10/31/15.
+ * A simple domain object used to represent a course in a program.
  */
 public class Course implements Serializable {
 

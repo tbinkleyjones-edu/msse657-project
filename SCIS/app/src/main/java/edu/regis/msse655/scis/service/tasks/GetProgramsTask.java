@@ -7,7 +7,7 @@ import edu.regis.msse655.scis.model.Programs;
 import edu.regis.msse655.scis.service.IProgramAndCoursesService;
 
 /**
- * Created by Tim on 10/31/15.
+ * An asynchronous task to retrieve a list of Programs from the Regis REST web service.
  */
 public class GetProgramsTask extends HttpTask {
 

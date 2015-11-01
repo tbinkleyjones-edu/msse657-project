@@ -12,7 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * Created by Tim on 10/31/15.
+ * An abstract base class used to send asynchronous RESTful requests over HTTP.
  */
 public abstract class HttpTask extends AsyncTask<String, Void, String> {
 

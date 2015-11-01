@@ -3,7 +3,7 @@ package edu.regis.msse655.scis.model;
 import java.io.Serializable;
 
 /**
- * Created by Tim on 10/31/15.
+ * A simple domain object used to represent a program of study.
  */
 public class Program implements Serializable{
     static final long serialVersionUID = -1L;

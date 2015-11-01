@@ -9,8 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import edu.regis.msse655.scis.dummy.DummyContent;
-
 /**
  * A fragment representing a single Course detail screen.
  * This fragment is either contained in a {@link CourseListActivity}

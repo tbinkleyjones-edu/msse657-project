@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 
 /**
- * Created by Tim on 10/31/15.
+ * A test case for the Program class and the Programs helper class.
  */
 public class ProgramTest extends ApplicationTestCase<Application> {
 
@@ -39,6 +39,10 @@ public class ProgramTest extends ApplicationTestCase<Application> {
         assertEquals(original, clone);
     }
 
+    /**
+     * Verify serialization from a JSON string.
+     * @throws Exception
+     */
     @SmallTest
     public void testFromJsonShouldProduceListOfObjects() throws Exception {
         String json = "[{\"id\":1,\"name\":\"CIS\"},{\"id\":2,\"name\":\"CN\"}]";

@@ -8,7 +8,7 @@ import java.util.List;
 import edu.regis.msse655.scis.model.Course;
 
 /**
- * Created by Tim on 10/31/15.
+ * An ArrayAdapter implementation for Course objects. Uses the built in simple_list_item_activated_1 layout.
  */
 public class CourseArrayAdapter extends ArrayAdapter<Course> {
     public CourseArrayAdapter(Context context, List<Course> objects) {

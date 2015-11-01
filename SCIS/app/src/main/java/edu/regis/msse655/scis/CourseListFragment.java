@@ -5,14 +5,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.regis.msse655.scis.components.CourseArrayAdapter;
-import edu.regis.msse655.scis.dummy.DummyContent;
 import edu.regis.msse655.scis.model.Course;
 import edu.regis.msse655.scis.model.Program;
 import edu.regis.msse655.scis.service.IProgramAndCoursesService;

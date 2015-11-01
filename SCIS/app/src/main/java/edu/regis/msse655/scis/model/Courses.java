@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Tim on 10/31/15.
+ * A utility class used to convert Course objects to and from alternative representations.
  */
 public class Courses {
 

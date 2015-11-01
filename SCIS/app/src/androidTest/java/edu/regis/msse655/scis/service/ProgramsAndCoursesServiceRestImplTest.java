@@ -1,6 +1,7 @@
 package edu.regis.msse655.scis.service;
 
 import android.test.InstrumentationTestCase;
+import android.test.suitebuilder.annotation.LargeTest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +16,11 @@ import edu.regis.msse655.scis.model.Program;
  */
 public class ProgramsAndCoursesServiceRestImplTest extends InstrumentationTestCase {
 
+    /**
+     * An integration test to validate communication with the live Programs REST end point.
+     * @throws Throwable
+     */
+    @LargeTest
     public void testGetPrograms() throws Throwable {
 
         final CountDownLatch signal = new CountDownLatch(1);
@@ -44,6 +50,11 @@ public class ProgramsAndCoursesServiceRestImplTest extends InstrumentationTestCa
         assertEquals(10, retrievedPrograms.size()); // Regis' web service always returns the same number of things.
     }
 
+    /**
+     * An integration test to validate communication with the live Courses REST end point.
+     * @throws Throwable
+     */
+    @LargeTest
     public void testGetCourses() throws Throwable {
 
         final CountDownLatch signal = new CountDownLatch(1);
