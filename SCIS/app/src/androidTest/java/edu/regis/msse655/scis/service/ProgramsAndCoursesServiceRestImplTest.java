@@ -31,7 +31,7 @@ public class ProgramsAndCoursesServiceRestImplTest extends InstrumentationTestCa
         runTestOnUiThread(new Runnable() {
             @Override
             public void run() {
-                new ProgramsAndCoursesServiceRestImpl().getProgramsAsync(new IProgramAndCoursesService.ProgramCallback() {
+                new ProgramsAndCoursesServiceRestImpl().getProgramsAsync(new ProgramCallback() {
 
                     @Override
                     public void execute(List<Program> programs) {
@@ -66,7 +66,7 @@ public class ProgramsAndCoursesServiceRestImplTest extends InstrumentationTestCa
             @Override
             public void run() {
                 int programId = 4; // This is the MSCC program
-                new ProgramsAndCoursesServiceRestImpl().getCoursesAsync(programId, new IProgramAndCoursesService.CourseCallback() {
+                new ProgramsAndCoursesServiceRestImpl().getCoursesAsync(programId, new CourseCallback() {
 
                     @Override
                     public void execute(List<Course> courses) {

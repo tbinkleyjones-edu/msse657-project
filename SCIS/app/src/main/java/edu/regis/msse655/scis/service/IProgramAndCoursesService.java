@@ -14,17 +14,4 @@ public interface IProgramAndCoursesService {
 
     void getCoursesAsync(int programId, CourseCallback callback);
 
-    /**
-     * Callback that will receive the retrieved Program objects. Called on the UI thread.
-     */
-    interface ProgramCallback {
-        void execute(List<Program> programs);
-    }
-
-    /**
-     * Callback that will receive the retrieved Course objects. Called on the UI thread.
-     */
-    interface CourseCallback {
-        void execute(List<Course> courses);
-    }
 }

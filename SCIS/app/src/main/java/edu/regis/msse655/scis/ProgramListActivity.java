@@ -19,7 +19,7 @@ import edu.regis.msse655.scis.service.ProgramsAndCoursesServiceRestImpl;
 import edu.regis.msse655.scis.service.ServiceLocator;
 
 /**
- * An activity representing a list of Programs, which when touched,
+ * An activity representing a list of ProgramList, which when touched,
  * lead to a {@link CourseListActivity} representing
  * item details.
  * <p>
