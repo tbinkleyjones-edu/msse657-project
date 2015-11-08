@@ -80,15 +80,9 @@ public class ProgramAndCoursesIntentService extends IntentService {
      * parameters.
      */
     private void handleActionGetPrograms() {
-        Log.i("ProgramsAndCoursesIS", "handleActionGetPrograms()" + " - thread id: " + Thread.currentThread().getId());
-
-        new GetProgramsTask(new ProgramCallback() {
-            @Override
-            public void execute(List<Program> programs) {
-                Log.e("ProgramsAndCoursesIS", "thread id: " + Thread.currentThread().getId());
-                GetProgramsReceiver.sendBroadcastGetPrograms(ProgramAndCoursesIntentService.this, programs);
-            }
-        }).execute(PROGRAMS);
+        Log.i("ProgramsAndCoursesIS", "handleActionGetPrograms()");
+        List<Program> programs = new GetProgramsTask().execute(PROGRAMS);
+        GetProgramsReceiver.sendBroadcastGetPrograms(ProgramAndCoursesIntentService.this, programs);
     }
 
     /**
@@ -97,11 +91,7 @@ public class ProgramAndCoursesIntentService extends IntentService {
      */
     private void handleActionGetCourses(int programId) {
         Log.i("ProgramsAndCoursesIS", "handleActionGetCourses()");
-        new GetCoursesTask(programId, new CourseCallback() {
-            @Override
-            public void execute(List<Course> courses) {
-                GetCoursesReceiver.sendBroadcastGetCourses(ProgramAndCoursesIntentService.this, courses);
-            }
-        }).execute(COURSES);
+        List<Course> courses = new GetCoursesTask(programId).execute(COURSES);
+        GetCoursesReceiver.sendBroadcastGetCourses(ProgramAndCoursesIntentService.this, courses);
     }
 }

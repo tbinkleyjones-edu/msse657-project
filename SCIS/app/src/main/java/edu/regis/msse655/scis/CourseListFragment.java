@@ -13,7 +13,6 @@ import java.util.List;
 import edu.regis.msse655.scis.components.CourseArrayAdapter;
 import edu.regis.msse655.scis.model.Course;
 import edu.regis.msse655.scis.model.Program;
-import edu.regis.msse655.scis.service.CourseCallback;
 import edu.regis.msse655.scis.service.GetCoursesReceiver;
 import edu.regis.msse655.scis.service.ProgramAndCoursesIntentService;
 
@@ -91,7 +90,7 @@ public class CourseListFragment extends ListFragment {
         Program program = (Program) intent.getSerializableExtra(IntentConstants.PROGRAM);
 
         receiver = new GetCoursesReceiver(
-                new CourseCallback() {
+                new GetCoursesReceiver.CourseCallback() {
                     @Override
                     public void execute(List<Course> courses) {
                         arrayAdapter.clear();

@@ -7,11 +7,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import edu.regis.msse655.scis.model.Course;
-import edu.regis.msse655.scis.model.Program;
 
 public class GetCoursesReceiver extends BroadcastReceiver {
 
@@ -50,4 +48,10 @@ public class GetCoursesReceiver extends BroadcastReceiver {
         callback.execute(courses);
     }
 
+    /**
+     * Callback that will receive the retrieved Course objects. Called on the UI thread.
+     */
+    public interface CourseCallback {
+        void execute(List<Course> courses);
+    }
 }

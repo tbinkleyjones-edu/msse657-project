@@ -34,7 +34,7 @@ public class ProgramTest extends ApplicationTestCase<Application> {
 
         ByteArrayInputStream baInputStream = new ByteArrayInputStream(baOutputStream.toByteArray());
         ObjectInputStream oInputStream = new ObjectInputStream(baInputStream);
-        Course clone = (Course) oInputStream.readObject();
+        Program clone = (Program) oInputStream.readObject();
 
         assertEquals(original, clone);
     }

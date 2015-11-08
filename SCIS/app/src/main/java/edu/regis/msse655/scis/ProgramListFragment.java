@@ -13,7 +13,6 @@ import edu.regis.msse655.scis.components.ProgramArrayAdapter;
 import edu.regis.msse655.scis.model.Program;
 import edu.regis.msse655.scis.service.GetProgramsReceiver;
 import edu.regis.msse655.scis.service.ProgramAndCoursesIntentService;
-import edu.regis.msse655.scis.service.ProgramCallback;
 
 /**
  * A list fragment representing a list of ProgramList.
@@ -73,7 +72,7 @@ public class ProgramListFragment extends ListFragment {
         );
         setListAdapter(arrayAdapter);
 
-        receiver = new GetProgramsReceiver(new ProgramCallback() {
+        receiver = new GetProgramsReceiver(new GetProgramsReceiver.ProgramCallback() {
             @Override
             public void execute(List<Program> programs) {
                 arrayAdapter.clear();

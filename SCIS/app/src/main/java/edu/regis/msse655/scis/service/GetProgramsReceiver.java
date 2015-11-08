@@ -48,7 +48,10 @@ public class GetProgramsReceiver extends BroadcastReceiver {
     }
 
 
-
-
-
+    /**
+     * Callback that will receive the retrieved Program objects. Called on the UI thread.
+     */
+    public interface ProgramCallback {
+        void execute(List<Program> programs);
+    }
 }

@@ -51,7 +51,7 @@ public class GetCoursesReceiverTest extends ApplicationTestCase<Application> {
     @SmallTest
     public void testOnReceive() {
 
-        GetCoursesReceiver receiver = new GetCoursesReceiver(new CourseCallback() {
+        GetCoursesReceiver receiver = new GetCoursesReceiver(new GetCoursesReceiver.CourseCallback() {
             @Override
             public void execute(List<Course> courses) {
                 assertEquals(1, courses.size());

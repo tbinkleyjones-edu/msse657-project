@@ -51,7 +51,7 @@ public class GetProgramsReceiverTest extends ApplicationTestCase<Application> {
     @SmallTest
     public void testOnReceive() {
 
-        GetProgramsReceiver receiver = new GetProgramsReceiver(new ProgramCallback() {
+        GetProgramsReceiver receiver = new GetProgramsReceiver(new GetProgramsReceiver.ProgramCallback() {
             @Override
             public void execute(List<Program> programs) {
                 assertEquals(1, programs.size());
