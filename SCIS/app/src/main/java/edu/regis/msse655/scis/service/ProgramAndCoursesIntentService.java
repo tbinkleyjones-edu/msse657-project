@@ -20,10 +20,8 @@ import edu.regis.msse655.scis.service.tasks.GetProgramsTask;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
- * a service on a separate handler thread.
- * <p>
- * TODO: Customize class - update intent actions, extra parameters and static
- * helper methods.
+ * a service on a separate handler thread. This class uses HttpTasks to retrieve
+ * data from the Regis web service.
  */
 public class ProgramAndCoursesIntentService extends IntentService {
 
@@ -37,12 +35,12 @@ public class ProgramAndCoursesIntentService extends IntentService {
     private static final String EXTRA_PROGRAMID = "edu.regis.msse655.scis.service.extra.PROGRAMID";
 
     /**
-     * Starts this service to perform action Foo with the given parameters. If
+     * Starts this service to perform action GetPrograms with the given parameters. If
      * the service is already performing a task this action will be queued.
      *
      * @see IntentService
+     * @param context context used to start the serivce.
      */
-    // TODO: Customize helper method
     public static void startActionGetPrograms(Context context) {
         Intent intent = new Intent(context, ProgramAndCoursesIntentService.class);
         intent.setAction(ACTION_GETPROGRAMS);
@@ -50,12 +48,13 @@ public class ProgramAndCoursesIntentService extends IntentService {
     }
 
     /**
-     * Starts this service to perform action Baz with the given parameters. If
+     * Starts this service to perform action GetCourses with the given parameters. If
      * the service is already performing a task this action will be queued.
      *
      * @see IntentService
+     * @param context context used to start the service.
+     * @param programId programId used to retrieve course data.
      */
-    // TODO: Customize helper method
     public static void startActionGetCourses(Context context, int programId) {
         Intent intent = new Intent(context, ProgramAndCoursesIntentService.class);
         intent.setAction(ACTION_GETCOURSES);
@@ -67,6 +66,11 @@ public class ProgramAndCoursesIntentService extends IntentService {
         super("ProgramAndCoursesIntentService");
     }
 
+    /**
+     * This method is invoked on the worker thread with a request to process. The work
+     * to execute is determined by the intent's action.
+     * @param intent
+     */
     @Override
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
@@ -81,7 +85,7 @@ public class ProgramAndCoursesIntentService extends IntentService {
     }
 
     /**
-     * Handle action Foo in the provided background thread with the provided
+     * Handle action GetPrograms in the provided background thread with the provided
      * parameters.
      */
     private void handleActionGetPrograms() {
@@ -91,7 +95,7 @@ public class ProgramAndCoursesIntentService extends IntentService {
     }
 
     /**
-     * Handle action Baz in the provided background thread with the provided
+     * Handle action GetCourses in the provided background thread with the provided
      * parameters.
      */
     private void handleActionGetCourses(int programId) {

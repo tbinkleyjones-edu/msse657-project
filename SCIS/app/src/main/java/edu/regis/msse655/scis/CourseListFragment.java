@@ -95,6 +95,9 @@ public class CourseListFragment extends ListFragment {
         Intent intent = getActivity().getIntent();
         Program program = (Program) intent.getSerializableExtra(IntentConstants.PROGRAM);
 
+        // Create the BroadcastReceiver used to receive course data in response to requests
+        // sent to the program and course intent service. The receiver is registered in onResume
+        // and unregistered in onPause.
         receiver = new GetCoursesReceiver(
                 new GetCoursesReceiver.CourseCallback() {
                     @Override
@@ -104,6 +107,7 @@ public class CourseListFragment extends ListFragment {
                     }
                 });
 
+        // Send a request for data to the intent service.
         ProgramAndCoursesIntentService.startActionGetCourses(this.getContext(), program.getId());
     }
 

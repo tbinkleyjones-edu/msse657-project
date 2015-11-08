@@ -22,7 +22,7 @@ import edu.regis.msse655.scis.model.Course;
 import edu.regis.msse655.scis.model.Program;
 
 /**
- * Created by Tim on 10/31/15.
+ * Test case to verify ProgramsAndCourseIntentService
  */
 public class ProgramsAndCoursesIntentServiceTest extends ServiceTestCase<ProgramAndCoursesIntentService> {
 

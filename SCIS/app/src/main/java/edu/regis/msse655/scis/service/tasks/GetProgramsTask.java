@@ -16,8 +16,13 @@ import edu.regis.msse655.scis.model.Programs;
  */
 public class GetProgramsTask extends HttpTask {
 
-    public List<Program> execute(String... params) {
-        String result = doGet(params);
+    /**
+     * Retrieves program data.
+     * @param url REST endpoint to be called.
+     * @return a list with zero or more programs.
+     */
+    public List<Program> execute(String url) {
+        String result = doGet(url);
         List<Program> programs = Programs.fromJson(result);
         return programs;
     }

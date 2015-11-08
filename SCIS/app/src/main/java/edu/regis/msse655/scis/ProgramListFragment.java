@@ -78,6 +78,9 @@ public class ProgramListFragment extends ListFragment {
         );
         setListAdapter(arrayAdapter);
 
+        // Create the BroadcastReceiver used to receive program data in response to requests
+        // sent to the program and course intent service. The receiver is registered in onResume
+        // and unregistered in onPause.
         receiver = new GetProgramsReceiver(new GetProgramsReceiver.ProgramCallback() {
             @Override
             public void execute(List<Program> programs) {
@@ -86,6 +89,7 @@ public class ProgramListFragment extends ListFragment {
             }
         });
 
+        // Send a requst for program data to the service.
         ProgramAndCoursesIntentService.startActionGetPrograms(this.getContext());
     }
 

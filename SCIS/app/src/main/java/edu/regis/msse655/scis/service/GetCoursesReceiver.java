@@ -6,7 +6,6 @@
 
 package edu.regis.msse655.scis.service;
 
-import android.app.IntentService;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -17,22 +16,22 @@ import java.util.List;
 
 import edu.regis.msse655.scis.model.Course;
 
+/**
+ * A BroadcastReceiver and helper methods used in conjunction with retrieving course data from the Regis web service.
+ */
 public class GetCoursesReceiver extends BroadcastReceiver {
 
     private static final String ACTION_GETCOURSES_RESULT = "edu.regis.msse655.scis.service.action.COURSES_RESULT";
 
     private static final String EXTRA_COURSES = "edu.regis.msse655.scis.service.extra.COURSES";
 
-
     private final CourseCallback callback;
 
     /**
-     * Starts this service to perform action Foo with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
+     * A helper method used to send courses via a broadcast intent.
+     * @param context context used to send the broadcast.
+     * @param courses a non-null list of courses.
      */
-    // TODO: Customize helper method
     public static void sendBroadcastGetCourses(Context context, List<Course> courses) {
         Intent intent = new Intent();
         intent.setAction(ACTION_GETCOURSES_RESULT);
@@ -40,14 +39,29 @@ public class GetCoursesReceiver extends BroadcastReceiver {
         context.sendBroadcast(intent);
     }
 
+    /**
+     * Constructor
+     * @param callback method called when a broadcast is received by this BroadcastReceiver.
+     */
     public GetCoursesReceiver(CourseCallback callback) {
         this.callback = callback;
     }
 
+    /**
+     * A help method used to register this BroadcastReceiver with the appropriate IntentFilter.
+     * @param context context used to register the receiver.
+     */
     public void register(Context context) {
         context.registerReceiver(this, new IntentFilter(ACTION_GETCOURSES_RESULT));
     }
 
+    /**
+     * This method is called when the BroadcastReceiver is receiving an Intent
+     * broadcast. When a broadcast is received, course data is extracted from the
+     * intent and sent to the callback.
+     * @param context context in which the receiver is running.
+     * @param intent intent being received.
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
         ArrayList<Course> courses = (ArrayList<Course>) intent.getSerializableExtra(EXTRA_COURSES);
@@ -55,7 +69,7 @@ public class GetCoursesReceiver extends BroadcastReceiver {
     }
 
     /**
-     * Callback that will receive the retrieved Course objects. Called on the UI thread.
+     * Callback that will receive the retrieved Course objects.
      */
     public interface CourseCallback {
         void execute(List<Course> courses);

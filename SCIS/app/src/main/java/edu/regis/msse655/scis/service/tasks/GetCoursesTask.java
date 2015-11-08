@@ -14,7 +14,7 @@ import edu.regis.msse655.scis.model.Course;
 import edu.regis.msse655.scis.model.Courses;
 
 /**
- * An synchronous task to retrieve a list of Courses from the Regis REST web service.
+ * A synchronous task to retrieve a list of Courses from the Regis REST web service.
  */
 public class GetCoursesTask extends HttpTask {
 
@@ -25,9 +25,14 @@ public class GetCoursesTask extends HttpTask {
         this.programId = programId;
     }
 
-    public List<Course> execute(String params) {
+    /**
+     * Retrieves course data.
+     * @param url REST endpoint to be called.
+     * @return a list with zero or more courses.
+     */
+    public List<Course> execute(String url) {
         Log.i("GetCoursesTask", "execute()");
-        String result = doGet(params);
+        String result = doGet(url);
         List<Course> courses = Courses.fromJson(programId, result);
         return courses;
     }

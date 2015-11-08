@@ -20,7 +20,7 @@ import java.util.List;
 import edu.regis.msse655.scis.model.Course;
 
 /**
- * Created by Tim on 11/7/15.
+ * Test case used to verify GetCourseReceiver.
  */
 public class GetCoursesReceiverTest extends ApplicationTestCase<Application> {
 
@@ -30,7 +30,7 @@ public class GetCoursesReceiverTest extends ApplicationTestCase<Application> {
 
     /**
      * Verify that the sendBroadcastGetCourses method calls context.sendBroadcast with
-     * an properly built Intent.
+     * a properly built Intent.
      */
     @SmallTest
     public void testSendBroadcast() {

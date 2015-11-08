@@ -17,6 +17,9 @@ import java.util.List;
 
 import edu.regis.msse655.scis.model.Program;
 
+/**
+ * A BroadcastReceiver and helper methods used in conjunction with retrieving program data from the Regis web service.
+ */
 public class GetProgramsReceiver extends BroadcastReceiver {
 
     private static final String ACTION_GETPROGRAMS_RESULT = "edu.regis.msse655.scis.service.action.PROGRAMS_RESULT";
@@ -26,12 +29,10 @@ public class GetProgramsReceiver extends BroadcastReceiver {
     private final ProgramCallback callback;
 
     /**
-     * Starts this service to perform action Foo with the given parameters. If
-     * the service is already performing a task this action will be queued.
-     *
-     * @see IntentService
+     * A helper method used to send programs via a broadcast intent.
+     * @param context context used to send the broadcast.
+     * @param programs a non-null list of programs.
      */
-    // TODO: Customize helper method
     public static void sendBroadcastGetPrograms(Context context, List<Program> programs) {
         Intent intent = new Intent();
         intent.setAction(ACTION_GETPROGRAMS_RESULT);
@@ -39,6 +40,10 @@ public class GetProgramsReceiver extends BroadcastReceiver {
         context.sendBroadcast(intent);
     }
 
+    /**
+     * Constructor
+     * @param callback method called when a broadcast is received by this BroadcastReceiver.
+     */
     public GetProgramsReceiver(ProgramCallback callback) {
         this.callback = callback;
     }
@@ -47,6 +52,13 @@ public class GetProgramsReceiver extends BroadcastReceiver {
         context.registerReceiver(this, new IntentFilter(ACTION_GETPROGRAMS_RESULT));
     }
 
+    /**
+     * This method is called when the BroadcastReceiver is receiving an Intent
+     * broadcast. When a broadcast is received, program data is extracted from the
+     * intent and sent to the callback.
+     * @param context context in which the receiver is running.
+     * @param intent intent being received.
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
         ArrayList<Program> programs = (ArrayList<Program>)intent.getSerializableExtra(EXTRA_PROGRAMS);
@@ -55,7 +67,7 @@ public class GetProgramsReceiver extends BroadcastReceiver {
 
 
     /**
-     * Callback that will receive the retrieved Program objects. Called on the UI thread.
+     * Callback that will receive the retrieved Program objects.
      */
     public interface ProgramCallback {
         void execute(List<Program> programs);
