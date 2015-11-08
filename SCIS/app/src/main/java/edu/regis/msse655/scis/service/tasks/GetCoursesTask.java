@@ -7,7 +7,6 @@ import java.util.List;
 import edu.regis.msse655.scis.model.Course;
 import edu.regis.msse655.scis.model.Courses;
 import edu.regis.msse655.scis.service.CourseCallback;
-import edu.regis.msse655.scis.service.IProgramAndCoursesService;
 
 /**
  * An asynchronous task to retrieve a list of Courses from the Regis REST web service.

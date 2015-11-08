@@ -15,10 +15,7 @@ import edu.regis.msse655.scis.model.Course;
 import edu.regis.msse655.scis.model.Program;
 import edu.regis.msse655.scis.service.CourseCallback;
 import edu.regis.msse655.scis.service.GetCoursesReceiver;
-import edu.regis.msse655.scis.service.GetProgramsReceiver;
-import edu.regis.msse655.scis.service.IProgramAndCoursesService;
 import edu.regis.msse655.scis.service.ProgramAndCoursesIntentService;
-import edu.regis.msse655.scis.service.ServiceLocator;
 
 /**
  * A list fragment representing a list of Courses. This fragment

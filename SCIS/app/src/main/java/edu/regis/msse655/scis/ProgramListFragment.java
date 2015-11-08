@@ -1,8 +1,6 @@
 package edu.regis.msse655.scis;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
@@ -14,10 +12,8 @@ import java.util.List;
 import edu.regis.msse655.scis.components.ProgramArrayAdapter;
 import edu.regis.msse655.scis.model.Program;
 import edu.regis.msse655.scis.service.GetProgramsReceiver;
-import edu.regis.msse655.scis.service.IProgramAndCoursesService;
 import edu.regis.msse655.scis.service.ProgramAndCoursesIntentService;
 import edu.regis.msse655.scis.service.ProgramCallback;
-import edu.regis.msse655.scis.service.ServiceLocator;
 
 /**
  * A list fragment representing a list of ProgramList.

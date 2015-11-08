@@ -15,8 +15,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import edu.regis.msse655.scis.model.Program;
-import edu.regis.msse655.scis.service.ProgramsAndCoursesServiceRestImpl;
-import edu.regis.msse655.scis.service.ServiceLocator;
 
 /**
  * An activity representing a list of ProgramList, which when touched,
@@ -37,9 +35,6 @@ public class ProgramListActivity extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // initialize the ServiceLocator
-        ServiceLocator.createInstance(new ProgramsAndCoursesServiceRestImpl());
 
         setContentView(R.layout.activity_program_list);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

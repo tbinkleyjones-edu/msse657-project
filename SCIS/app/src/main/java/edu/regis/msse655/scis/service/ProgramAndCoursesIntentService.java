@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.Context;
 import android.util.Log;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import edu.regis.msse655.scis.model.Course;
@@ -79,14 +80,15 @@ public class ProgramAndCoursesIntentService extends IntentService {
      * parameters.
      */
     private void handleActionGetPrograms() {
-        Log.i("ProgramsAndCoursesIS", "getProgramsAsync()");
+        Log.i("ProgramsAndCoursesIS", "handleActionGetPrograms()" + " - thread id: " + Thread.currentThread().getId());
+
         new GetProgramsTask(new ProgramCallback() {
             @Override
             public void execute(List<Program> programs) {
+                Log.e("ProgramsAndCoursesIS", "thread id: " + Thread.currentThread().getId());
                 GetProgramsReceiver.sendBroadcastGetPrograms(ProgramAndCoursesIntentService.this, programs);
             }
         }).execute(PROGRAMS);
-
     }
 
     /**
@@ -94,7 +96,7 @@ public class ProgramAndCoursesIntentService extends IntentService {
      * parameters.
      */
     private void handleActionGetCourses(int programId) {
-        Log.i("ProgramsAndCoursesIS", "getCoursesAsync()");
+        Log.i("ProgramsAndCoursesIS", "handleActionGetCourses()");
         new GetCoursesTask(programId, new CourseCallback() {
             @Override
             public void execute(List<Course> courses) {
