@@ -1,3 +1,9 @@
+/*
+ * Timothy Binkley-Jones
+ * MSSE 657 Enterprise Android Software Development
+ * Regis University
+ */
+
 package edu.regis.msse655.scis.model;
 
 import android.app.Application;
@@ -21,6 +27,7 @@ public class ProgramTest extends ApplicationTestCase<Application> {
 
     /**
      * Verify serialization by writing/reading an object to/from a byte array
+     *
      * @throws Exception
      */
     @SmallTest
@@ -41,6 +48,7 @@ public class ProgramTest extends ApplicationTestCase<Application> {
 
     /**
      * Verify serialization from a JSON string.
+     *
      * @throws Exception
      */
     @SmallTest

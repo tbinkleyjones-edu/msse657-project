@@ -1,3 +1,9 @@
+/*
+ * Timothy Binkley-Jones
+ * MSSE 657 Enterprise Android Software Development
+ * Regis University
+ */
+
 package edu.regis.msse655.scis.model;
 
 import android.app.Application;
@@ -14,13 +20,14 @@ import java.util.List;
  * A test case for the Course class and the Courses helper class.
  */
 public class CourseTest extends ApplicationTestCase<Application> {
-    
+
     public CourseTest() {
         super(Application.class);
     }
 
     /**
      * Verify serialization by writing/reading an object to/from a byte array
+     *
      * @throws Exception
      */
     @SmallTest
@@ -41,6 +48,7 @@ public class CourseTest extends ApplicationTestCase<Application> {
 
     /**
      * Verify searialization from a JSON string.
+     *
      * @throws Exception
      */
     @SmallTest

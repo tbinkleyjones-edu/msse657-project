@@ -1,3 +1,9 @@
+/*
+ * Timothy Binkley-Jones
+ * MSSE 657 Enterprise Android Software Development
+ * Regis University
+ */
+
 package edu.regis.msse655.scis.service;
 
 import android.app.Application;
@@ -27,13 +33,13 @@ public class GetProgramsReceiverTest extends ApplicationTestCase<Application> {
      * an properly built Intent.
      */
     @SmallTest
-    public void testSendBroadcast () {
+    public void testSendBroadcast() {
 
         Context context = new MockContext() {
             @Override
             public void sendBroadcast(Intent intent) {
                 assertEquals("edu.regis.msse655.scis.service.action.PROGRAMS_RESULT", intent.getAction());
-                ArrayList<Program> programs = (ArrayList<Program>)intent.getSerializableExtra("edu.regis.msse655.scis.service.extra.PROGRAMS");
+                ArrayList<Program> programs = (ArrayList<Program>) intent.getSerializableExtra("edu.regis.msse655.scis.service.extra.PROGRAMS");
                 assertNotNull(programs);
                 assertEquals(1, programs.size());
                 assertEquals(new Program(1, "test program"), programs.get(0));
