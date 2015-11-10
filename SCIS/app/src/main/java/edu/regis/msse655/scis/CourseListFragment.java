@@ -1,3 +1,9 @@
+/*
+ * Timothy Binkley-Jones
+ * MSSE 657 Enterprise Android Software Development
+ * Regis University
+ */
+
 package edu.regis.msse655.scis;
 
 import android.app.Activity;
@@ -13,15 +19,15 @@ import java.util.List;
 import edu.regis.msse655.scis.components.CourseArrayAdapter;
 import edu.regis.msse655.scis.model.Course;
 import edu.regis.msse655.scis.model.Program;
-import edu.regis.msse655.scis.service.IProgramAndCoursesService;
-import edu.regis.msse655.scis.service.ServiceLocator;
+import edu.regis.msse655.scis.service.GetCoursesReceiver;
+import edu.regis.msse655.scis.service.ProgramAndCoursesIntentService;
 
 /**
  * A list fragment representing a list of Courses. This fragment
  * also supports tablet devices by allowing list items to be given an
  * 'activated' state upon selection. This helps indicate which item is
  * currently being viewed in a {@link CourseDetailFragment}.
- * <p>
+ * <p/>
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
@@ -45,6 +51,7 @@ public class CourseListFragment extends ListFragment {
      * The current activated item position. Only used on tablets.
      */
     private int mActivatedPosition = ListView.INVALID_POSITION;
+    private GetCoursesReceiver receiver;
 
     /**
      * A callback interface that all activities containing this fragment must
@@ -86,16 +93,22 @@ public class CourseListFragment extends ListFragment {
         setListAdapter(arrayAdapter);
 
         Intent intent = getActivity().getIntent();
-        Program program = (Program)intent.getSerializableExtra(IntentConstants.PROGRAM);
+        Program program = (Program) intent.getSerializableExtra(IntentConstants.PROGRAM);
 
-        ServiceLocator.getProgramAndCoursesService().getCoursesAsync(program.getId(),
-                new IProgramAndCoursesService.CourseCallback() {
+        // Create the BroadcastReceiver used to receive course data in response to requests
+        // sent to the program and course intent service. The receiver is registered in onResume
+        // and unregistered in onPause.
+        receiver = new GetCoursesReceiver(
+                new GetCoursesReceiver.CourseCallback() {
                     @Override
                     public void execute(List<Course> courses) {
                         arrayAdapter.clear();
                         arrayAdapter.addAll(courses);
                     }
                 });
+
+        // Send a request for data to the intent service.
+        ProgramAndCoursesIntentService.startActionGetCourses(this.getContext(), program.getId());
     }
 
     @Override
@@ -127,6 +140,18 @@ public class CourseListFragment extends ListFragment {
 
         // Reset the active callbacks interface to the dummy implementation.
         mCallbacks = sDummyCallbacks;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        receiver.register(getContext());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getContext().unregisterReceiver(receiver);
     }
 
     @Override

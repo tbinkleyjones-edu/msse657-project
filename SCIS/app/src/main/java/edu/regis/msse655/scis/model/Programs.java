@@ -1,3 +1,9 @@
+/*
+ * Timothy Binkley-Jones
+ * MSSE 657 Enterprise Android Software Development
+ * Regis University
+ */
+
 package edu.regis.msse655.scis.model;
 
 import org.json.JSONArray;

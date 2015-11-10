@@ -1,25 +1,29 @@
+/*
+ * Timothy Binkley-Jones
+ * MSSE 657 Enterprise Android Software Development
+ * Regis University
+ */
+
 package edu.regis.msse655.scis.service.tasks;
 
 import java.util.List;
 
 import edu.regis.msse655.scis.model.Program;
 import edu.regis.msse655.scis.model.Programs;
-import edu.regis.msse655.scis.service.IProgramAndCoursesService;
 
 /**
- * An asynchronous task to retrieve a list of Programs from the Regis REST web service.
+ * An synchronous task to retrieve a list of Programs from the Regis REST web service.
  */
 public class GetProgramsTask extends HttpTask {
 
-    private final IProgramAndCoursesService.ProgramCallback callback;
-
-    public GetProgramsTask(IProgramAndCoursesService.ProgramCallback callback) {
-        this.callback = callback;
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
+    /**
+     * Retrieves program data.
+     * @param url REST endpoint to be called.
+     * @return a list with zero or more programs.
+     */
+    public List<Program> execute(String url) {
+        String result = doGet(url);
         List<Program> programs = Programs.fromJson(result);
-        callback.execute(programs);
+        return programs;
     }
 }

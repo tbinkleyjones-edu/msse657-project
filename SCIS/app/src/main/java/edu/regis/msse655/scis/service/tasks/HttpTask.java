@@ -1,6 +1,11 @@
+/*
+ * Timothy Binkley-Jones
+ * MSSE 657 Enterprise Android Software Development
+ * Regis University
+ */
+
 package edu.regis.msse655.scis.service.tasks;
 
-import android.os.AsyncTask;
 import android.util.Log;
 
 import java.io.BufferedInputStream;
@@ -12,12 +17,11 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 /**
- * An abstract base class used to send asynchronous RESTful requests over HTTP.
+ * An abstract base class used to send synchronous RESTful requests over HTTP.
  */
-public abstract class HttpTask extends AsyncTask<String, Void, String> {
+public abstract class HttpTask {
 
-    @Override
-    protected String doInBackground(String... params) {
+    protected String doGet(String... params) {
         StringBuilder result = new StringBuilder();
         HttpURLConnection urlConnection = null;
         try {

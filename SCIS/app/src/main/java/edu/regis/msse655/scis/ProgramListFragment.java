@@ -1,3 +1,9 @@
+/*
+ * Timothy Binkley-Jones
+ * MSSE 657 Enterprise Android Software Development
+ * Regis University
+ */
+
 package edu.regis.msse655.scis;
 
 import android.app.Activity;
@@ -11,12 +17,12 @@ import java.util.List;
 
 import edu.regis.msse655.scis.components.ProgramArrayAdapter;
 import edu.regis.msse655.scis.model.Program;
-import edu.regis.msse655.scis.service.IProgramAndCoursesService;
-import edu.regis.msse655.scis.service.ServiceLocator;
+import edu.regis.msse655.scis.service.GetProgramsReceiver;
+import edu.regis.msse655.scis.service.ProgramAndCoursesIntentService;
 
 /**
- * A list fragment representing a list of Programs.
- * <p>
+ * A list fragment representing a list of ProgramList.
+ * <p/>
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
@@ -29,6 +35,7 @@ public class ProgramListFragment extends ListFragment {
      * clicks.
      */
     private Callbacks mCallbacks = sDummyCallbacks;
+    private GetProgramsReceiver receiver;
 
     /**
      * A callback interface that all activities containing this fragment must
@@ -38,6 +45,7 @@ public class ProgramListFragment extends ListFragment {
     public interface Callbacks {
         /**
          * Callback for when an item has been selected.
+         *
          * @param program
          */
         public void onItemSelected(Program program);
@@ -70,15 +78,19 @@ public class ProgramListFragment extends ListFragment {
         );
         setListAdapter(arrayAdapter);
 
-        ServiceLocator.getProgramAndCoursesService().getProgramsAsync(
-                new IProgramAndCoursesService.ProgramCallback() {
+        // Create the BroadcastReceiver used to receive program data in response to requests
+        // sent to the program and course intent service. The receiver is registered in onResume
+        // and unregistered in onPause.
+        receiver = new GetProgramsReceiver(new GetProgramsReceiver.ProgramCallback() {
+            @Override
+            public void execute(List<Program> programs) {
+                arrayAdapter.clear();
+                arrayAdapter.addAll(programs);
+            }
+        });
 
-                    @Override
-                    public void execute(List<Program> programs) {
-                        arrayAdapter.clear();
-                        arrayAdapter.addAll(programs);
-                    }
-                });
+        // Send a requst for program data to the service.
+        ProgramAndCoursesIntentService.startActionGetPrograms(this.getContext());
     }
 
     @Override
@@ -105,6 +117,18 @@ public class ProgramListFragment extends ListFragment {
 
         // Reset the active callbacks interface to the dummy implementation.
         mCallbacks = sDummyCallbacks;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        receiver.register(getContext());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getContext().unregisterReceiver(receiver);
     }
 
     @Override
