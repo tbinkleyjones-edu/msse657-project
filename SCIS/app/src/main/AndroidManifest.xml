@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.regis.msse655.scis" >
+    package="edu.regis.msse657.scis" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".ProgramListActivity"
+            android:name="edu.regis.msse657.scis.ProgramListActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
@@ -22,48 +22,48 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".CourseListActivity"
+            android:name="edu.regis.msse657.scis.CourseListActivity"
             android:label="@string/title_course_list"
-            android:parentActivityName=".ProgramListActivity"
+            android:parentActivityName="edu.regis.msse657.scis.ProgramListActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="edu.regis.msse655.scis.ProgramListActivity" />
+                android:value="edu.regis.msse657.scis.ProgramListActivity" />
         </activity>
         <activity
-            android:name=".CourseDetailActivity"
+            android:name="edu.regis.msse657.scis.CourseDetailActivity"
             android:label="@string/title_course_detail"
-            android:parentActivityName=".CourseListActivity"
+            android:parentActivityName="edu.regis.msse657.scis.CourseListActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="edu.regis.msse655.scis.CourseListActivity" />
+                android:value="edu.regis.msse657.scis.CourseListActivity" />
         </activity>
         <activity
-            android:name=".ShareActivity"
+            android:name="edu.regis.msse657.scis.ShareActivity"
             android:label="@string/title_activity_share"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".FeedbackActivity"
+            android:name="edu.regis.msse657.scis.FeedbackActivity"
             android:label="@string/title_activity_feedback"
-            android:parentActivityName=".ProgramListActivity"
+            android:parentActivityName="edu.regis.msse657.scis.ProgramListActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="edu.regis.msse655.scis.ProgramListActivity" />
+                android:value="edu.regis.msse657.scis.ProgramListActivity" />
         </activity>
         <activity
-            android:name=".ChatActivity"
+            android:name="edu.regis.msse657.scis.ChatActivity"
             android:label="@string/title_activity_chat"
-            android:parentActivityName=".ProgramListActivity"
+            android:parentActivityName="edu.regis.msse657.scis.ProgramListActivity"
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="edu.regis.msse655.scis.ProgramListActivity" />
+                android:value="edu.regis.msse657.scis.ProgramListActivity" />
         </activity>
 
         <service
-            android:name=".service.ProgramAndCoursesIntentService"
+            android:name="edu.regis.msse657.scis.service.ProgramAndCoursesIntentService"
             android:exported="false" >
         </service>
 

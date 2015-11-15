@@ -1,4 +1,4 @@
-package edu.regis.msse655.scis;
+package edu.regis.msse657.scis;
 
 import org.junit.Test;
 
