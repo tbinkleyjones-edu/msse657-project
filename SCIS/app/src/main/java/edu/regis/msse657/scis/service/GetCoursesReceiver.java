@@ -23,19 +23,19 @@ public class GetCoursesReceiver extends BroadcastReceiver {
 
     private static final String ACTION_GETCOURSES_RESULT = "edu.regis.msse655.scis.service.action.COURSES_RESULT";
 
-    private static final String EXTRA_COURSES = "edu.regis.msse655.scis.service.extra.COURSES";
+    private static final String EXTRA_PROGRAMID = "edu.regis.msse655.scis.service.extra.PROGRAMID";
 
     private final CourseCallback callback;
 
     /**
      * A helper method used to send courses via a broadcast intent.
      * @param context context used to send the broadcast.
-     * @param courses a non-null list of courses.
+     * @param programId .
      */
-    public static void sendBroadcastGetCourses(Context context, List<Course> courses) {
+    public static void sendBroadcastGetCourses(Context context, long programId) {
         Intent intent = new Intent();
         intent.setAction(ACTION_GETCOURSES_RESULT);
-        intent.putExtra(EXTRA_COURSES, new ArrayList<>(courses));
+        intent.putExtra(EXTRA_PROGRAMID, programId);
         context.sendBroadcast(intent);
     }
 
@@ -64,7 +64,9 @@ public class GetCoursesReceiver extends BroadcastReceiver {
      */
     @Override
     public void onReceive(Context context, Intent intent) {
-        ArrayList<Course> courses = (ArrayList<Course>) intent.getSerializableExtra(EXTRA_COURSES);
+        IProgramAndCourseCache cache = new ProgramAndCourseCacheContentProviderImpl(context.getContentResolver());
+        final long programId = intent.getLongExtra(EXTRA_PROGRAMID, -1);
+        List<Course> courses = cache.retrieveCoursesForProgram(programId);
         callback.execute(courses);
     }
 

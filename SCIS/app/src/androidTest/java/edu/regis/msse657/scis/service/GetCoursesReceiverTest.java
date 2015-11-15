@@ -48,7 +48,7 @@ public class GetCoursesReceiverTest extends ApplicationTestCase<Application> {
 
         List<Course> courses = Arrays.asList(new Course(1, "test course", 1));
 
-        GetCoursesReceiver.sendBroadcastGetCourses(context, courses);
+        GetCoursesReceiver.sendBroadcastGetCourses(context, 1);
     }
 
     /**

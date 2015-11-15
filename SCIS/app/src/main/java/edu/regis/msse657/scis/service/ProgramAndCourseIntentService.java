@@ -90,8 +90,15 @@ public class ProgramAndCourseIntentService extends IntentService {
      */
     private void handleActionGetPrograms() {
         Log.i("ProgramsAndCoursesIS", "handleActionGetPrograms()");
-        List<Program> programs = new GetProgramsTask().execute(PROGRAMS);
-        GetProgramsReceiver.sendBroadcastGetPrograms(ProgramAndCourseIntentService.this, programs);
+
+        IProgramAndCourseCache cache = new ProgramAndCourseCacheContentProviderImpl(getContentResolver());
+        if( cache.retrieveAllPrograms().size() == 0) {
+            List<Program> programs = new GetProgramsTask().execute(PROGRAMS);
+            for (Program program : programs) {
+                cache.cacheProgram(program);
+            }
+        }
+        GetProgramsReceiver.sendBroadcastGetPrograms(ProgramAndCourseIntentService.this);
     }
 
     /**
@@ -100,7 +107,13 @@ public class ProgramAndCourseIntentService extends IntentService {
      */
     private void handleActionGetCourses(long programId) {
         Log.i("ProgramsAndCoursesIS", "handleActionGetCourses()");
-        List<Course> courses = new GetCoursesTask(programId).execute(COURSES);
-        GetCoursesReceiver.sendBroadcastGetCourses(ProgramAndCourseIntentService.this, courses);
+        IProgramAndCourseCache cache = new ProgramAndCourseCacheContentProviderImpl(getContentResolver());
+        if( cache.retrieveCoursesForProgram(programId).size() == 0) {
+            List<Course> courses = new GetCoursesTask().execute(COURSES);
+            for (Course course : courses) {
+                cache.cacheCourse(course);
+            }
+        }
+        GetCoursesReceiver.sendBroadcastGetCourses(ProgramAndCourseIntentService.this, programId);
     }
 }

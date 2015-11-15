@@ -18,11 +18,8 @@ import edu.regis.msse657.scis.model.Courses;
  */
 public class GetCoursesTask extends HttpTask {
 
-    private final long programId;
-
-    public GetCoursesTask(long programId) {
+    public GetCoursesTask() {
         Log.i("GetCoursesTask", "constructor()");
-        this.programId = programId;
     }
 
     /**
@@ -33,7 +30,7 @@ public class GetCoursesTask extends HttpTask {
     public List<Course> execute(String url) {
         Log.i("GetCoursesTask", "execute()");
         String result = doGet(url);
-        List<Course> courses = Courses.fromJson(programId, result);
+        List<Course> courses = Courses.fromJson(result);
         return courses;
     }
 }

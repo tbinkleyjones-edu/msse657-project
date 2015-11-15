@@ -54,10 +54,10 @@ public class CourseTest extends ApplicationTestCase<Application> {
     @SmallTest
     public void testFromJsonShouldProduceListOfObjects() throws Exception {
         String json = "[{\"id\":1,\"name\":\"CIS 206 Business Software Applications\",\"pid\":{\"id\":1,\"name\":\"CIS\"}},{\"id\":2,\"name\":\"CN 301 Networking Technologies\",\"pid\":{\"id\":2,\"name\":\"CN\"}}]";
-        List<Course> courses = Courses.fromJson(2, json);
+        List<Course> courses = Courses.fromJson(json);
         assertNotNull(courses);
-        assertEquals(1, courses.size());
-        assertTrue(courses.get(0).getName().startsWith("CN 301"));
+        assertEquals(2, courses.size());
+        assertTrue(courses.get(1).getName().startsWith("CN 301"));
     }
 
 }

@@ -24,11 +24,11 @@ public interface IProgramAndCourseCache {
     List<Program> retrieveAllPrograms();
 
     /**
-     * Add the list of programs to the internal cache, removing any existing programs.
-     * @param programs
+     * Add the program to the internal cache.
+     * @param program
      * @return
      */
-    void cachePrograms(List<Program> programs);
+    void cacheProgram(Program program);
 
     /**
      * Retrieves every Course object in the cache related to the specified program.
@@ -38,14 +38,15 @@ public interface IProgramAndCourseCache {
     List<Course> retrieveCoursesForProgram(long programId);
 
     /**
-     * Add the list of courses to the internal cache, removing any existing courses.
-     * @param courses
+     * Add the course to the internal cache.
+     * @param course
      * @return
      */
-    void cacheCourses(List<Course> courses);
+    void cacheCourse(Course course);
 
     /**
      * Remove all programs and courses stored in the cache.
+     * @return The number of rows affected.
      */
-    void clear();
+    int clear();
 }

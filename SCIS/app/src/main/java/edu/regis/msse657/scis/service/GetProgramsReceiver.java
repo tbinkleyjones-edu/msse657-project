@@ -30,12 +30,10 @@ public class GetProgramsReceiver extends BroadcastReceiver {
     /**
      * A helper method used to send programs via a broadcast intent.
      * @param context context used to send the broadcast.
-     * @param programs a non-null list of programs.
      */
-    public static void sendBroadcastGetPrograms(Context context, List<Program> programs) {
+    public static void sendBroadcastGetPrograms(Context context) {
         Intent intent = new Intent();
         intent.setAction(ACTION_GETPROGRAMS_RESULT);
-        intent.putExtra(EXTRA_PROGRAMS, new ArrayList<>(programs));
         context.sendBroadcast(intent);
     }
 
@@ -60,7 +58,8 @@ public class GetProgramsReceiver extends BroadcastReceiver {
      */
     @Override
     public void onReceive(Context context, Intent intent) {
-        ArrayList<Program> programs = (ArrayList<Program>)intent.getSerializableExtra(EXTRA_PROGRAMS);
+        IProgramAndCourseCache cache = new ProgramAndCourseCacheContentProviderImpl(context.getContentResolver());
+        List<Program> programs = cache.retrieveAllPrograms();
         callback.execute(programs);
     }
 
