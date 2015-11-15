@@ -55,7 +55,7 @@ public class ProgramAndCoursesIntentService extends IntentService {
      * @param context context used to start the service.
      * @param programId programId used to retrieve course data.
      */
-    public static void startActionGetCourses(Context context, int programId) {
+    public static void startActionGetCourses(Context context, long programId) {
         Intent intent = new Intent(context, ProgramAndCoursesIntentService.class);
         intent.setAction(ACTION_GETCOURSES);
         intent.putExtra(EXTRA_PROGRAMID, programId);
@@ -78,7 +78,7 @@ public class ProgramAndCoursesIntentService extends IntentService {
             if (ACTION_GETPROGRAMS.equals(action)) {
                 handleActionGetPrograms();
             } else if (ACTION_GETCOURSES.equals(action)) {
-                final int programId = intent.getIntExtra(EXTRA_PROGRAMID, -1);
+                final long programId = intent.getLongExtra(EXTRA_PROGRAMID, -1);
                 handleActionGetCourses(programId);
             }
         }
@@ -98,7 +98,7 @@ public class ProgramAndCoursesIntentService extends IntentService {
      * Handle action GetCourses in the provided background thread with the provided
      * parameters.
      */
-    private void handleActionGetCourses(int programId) {
+    private void handleActionGetCourses(long programId) {
         Log.i("ProgramsAndCoursesIS", "handleActionGetCourses()");
         List<Course> courses = new GetCoursesTask(programId).execute(COURSES);
         GetCoursesReceiver.sendBroadcastGetCourses(ProgramAndCoursesIntentService.this, courses);

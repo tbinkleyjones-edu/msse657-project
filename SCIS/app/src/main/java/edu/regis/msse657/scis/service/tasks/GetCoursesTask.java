@@ -18,9 +18,9 @@ import edu.regis.msse657.scis.model.Courses;
  */
 public class GetCoursesTask extends HttpTask {
 
-    private final int programId;
+    private final long programId;
 
-    public GetCoursesTask(int programId) {
+    public GetCoursesTask(long programId) {
         Log.i("GetCoursesTask", "constructor()");
         this.programId = programId;
     }

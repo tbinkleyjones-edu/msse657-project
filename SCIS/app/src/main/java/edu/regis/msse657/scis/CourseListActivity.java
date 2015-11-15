@@ -116,7 +116,7 @@ public class CourseListActivity extends AppCompatActivity
             // adding or replacing the detail fragment using a
             // fragment transaction.
             Bundle arguments = new Bundle();
-            arguments.putInt(CourseDetailFragment.ARG_ITEM_ID, course.getId());
+            arguments.putLong(CourseDetailFragment.ARG_ITEM_ID, course.getId());
             CourseDetailFragment fragment = new CourseDetailFragment();
             fragment.setArguments(arguments);
             getSupportFragmentManager().beginTransaction()

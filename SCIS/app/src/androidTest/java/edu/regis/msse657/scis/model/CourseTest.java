@@ -32,7 +32,7 @@ public class CourseTest extends ApplicationTestCase<Application> {
      */
     @SmallTest
     public void testSerializationShouldProduceEqualObjects() throws Exception {
-        Course original = new Course(1, "name");
+        Course original = new Course(1, "name", 1);
 
         ByteArrayOutputStream baOutputStream = new ByteArrayOutputStream();
         ObjectOutputStream oOutputStream = new ObjectOutputStream(baOutputStream);

@@ -20,7 +20,7 @@ public class Courses {
     private Courses() {
     }
 
-    public static List<Course> fromJson(int programId, String json) {
+    public static List<Course> fromJson(long programId, String json) {
 
         List<Course> result = new ArrayList<Course>();
         try {
@@ -30,7 +30,8 @@ public class Courses {
                 if (programId == jsonObject.getJSONObject("pid").getInt("id")) {
                     result.add(new Course(
                                     jsonObject.getInt("id"),
-                                    jsonObject.getString("name"))
+                                    jsonObject.getString("name"),
+                                    programId)
                     );
                 }
             }

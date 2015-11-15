@@ -42,11 +42,11 @@ public class GetCoursesReceiverTest extends ApplicationTestCase<Application> {
                 ArrayList<Course> courses = (ArrayList<Course>) intent.getSerializableExtra("edu.regis.msse655.scis.service.extra.COURSES");
                 assertNotNull(courses);
                 assertEquals(1, courses.size());
-                assertEquals(new Course(1, "test course"), courses.get(0));
+                assertEquals(new Course(1, "test course", 1), courses.get(0));
             }
         };
 
-        List<Course> courses = Arrays.asList(new Course(1, "test course"));
+        List<Course> courses = Arrays.asList(new Course(1, "test course", 1));
 
         GetCoursesReceiver.sendBroadcastGetCourses(context, courses);
     }
@@ -61,13 +61,13 @@ public class GetCoursesReceiverTest extends ApplicationTestCase<Application> {
             @Override
             public void execute(List<Course> courses) {
                 assertEquals(1, courses.size());
-                assertEquals(new Course(1, "test course"), courses.get(0));
+                assertEquals(new Course(1, "test course", 1), courses.get(0));
             }
         });
 
 
         ArrayList<Course> courses = new ArrayList<>();
-        courses.add(new Course(1, "test course"));
+        courses.add(new Course(1, "test course", 1));
 
         Intent intent = new Intent();
         intent.setAction("edu.regis.msse655.scis.service.action.COURSES_RESULT");

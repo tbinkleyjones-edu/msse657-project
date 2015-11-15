@@ -14,15 +14,15 @@ import java.io.Serializable;
 public class Program implements Serializable{
     static final long serialVersionUID = -1L;
 
-    private final int id;
+    private final long id;
     private final String name;
 
-    public Program(int id, String name) {
+    public Program(long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
@@ -39,12 +39,11 @@ public class Program implements Serializable{
 
         if (id != program.id) return false;
         return !(name != null ? !name.equals(program.name) : program.name != null);
-
     }
 
     @Override
     public int hashCode() {
-        int result = id;
+        int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (name != null ? name.hashCode() : 0);
         return result;
     }

@@ -59,7 +59,7 @@ public class ProgramsAndCoursesIntentServiceTest extends ServiceTestCase<Program
             public ComponentName startService(Intent intent) {
                 assertNotNull(intent);
                 assertEquals("edu.regis.msse655.scis.service.action.COURSES", intent.getAction());
-                assertEquals(1, intent.getIntExtra("edu.regis.msse655.scis.service.extra.PROGRAMID", -1));
+                assertEquals(1, intent.getLongExtra("edu.regis.msse655.scis.service.extra.PROGRAMID", -1));
                 return null; // return value doesn't matter here.
             }
         };
@@ -132,7 +132,7 @@ public class ProgramsAndCoursesIntentServiceTest extends ServiceTestCase<Program
 
         Intent intent = new Intent(getContext(), ProgramAndCoursesIntentService.class);
         intent.setAction("edu.regis.msse655.scis.service.action.COURSES");
-        intent.putExtra("edu.regis.msse655.scis.service.extra.PROGRAMID", 4); // This is the MSCC program
+        intent.putExtra("edu.regis.msse655.scis.service.extra.PROGRAMID", 4L); // This is the MSCC program
         startService(intent);
 
         /* The testing thread will wait here until the service thread releases it
