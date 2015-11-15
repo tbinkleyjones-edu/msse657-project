@@ -11,12 +11,12 @@ import android.provider.BaseColumns;
 /**
  * A container for constants that define names for URs, tables, and columns.
  */
-public final class ProgramAndCoursesContract {
+public final class ProgramAndCourseContract {
 
     /**
      * A private constructor to prevent instantiation.
      */
-    private ProgramAndCoursesContract() {
+    private ProgramAndCourseContract() {
     }
 
     public static final String DATABASE_NAME = "ProgramsAndCourse.db";

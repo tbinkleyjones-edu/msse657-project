@@ -24,10 +24,10 @@ import edu.regis.msse657.scis.model.Program;
 /**
  * Test case to verify ProgramsAndCourseIntentService
  */
-public class ProgramsAndCoursesIntentServiceTest extends ServiceTestCase<ProgramAndCoursesIntentService> {
+public class ProgramsAndCoursesIntentServiceTest extends ServiceTestCase<ProgramAndCourseIntentService> {
 
     public ProgramsAndCoursesIntentServiceTest() {
-        super(ProgramAndCoursesIntentService.class);
+        super(ProgramAndCourseIntentService.class);
     }
 
     /**
@@ -45,7 +45,7 @@ public class ProgramsAndCoursesIntentServiceTest extends ServiceTestCase<Program
             }
         };
 
-        ProgramAndCoursesIntentService.startActionGetPrograms(context);
+        ProgramAndCourseIntentService.startActionGetPrograms(context);
     }
 
     /**
@@ -64,7 +64,7 @@ public class ProgramsAndCoursesIntentServiceTest extends ServiceTestCase<Program
             }
         };
 
-        ProgramAndCoursesIntentService.startActionGetCourses(context, 1);
+        ProgramAndCourseIntentService.startActionGetCourses(context, 1);
     }
 
     /**
@@ -89,7 +89,7 @@ public class ProgramsAndCoursesIntentServiceTest extends ServiceTestCase<Program
 
         setContext(context);
 
-        Intent intent = new Intent(getContext(), ProgramAndCoursesIntentService.class);
+        Intent intent = new Intent(getContext(), ProgramAndCourseIntentService.class);
         intent.setAction("edu.regis.msse655.scis.service.action.PROGRAMS");
 
         startService(intent);
@@ -130,7 +130,7 @@ public class ProgramsAndCoursesIntentServiceTest extends ServiceTestCase<Program
 
         setContext(context);
 
-        Intent intent = new Intent(getContext(), ProgramAndCoursesIntentService.class);
+        Intent intent = new Intent(getContext(), ProgramAndCourseIntentService.class);
         intent.setAction("edu.regis.msse655.scis.service.action.COURSES");
         intent.putExtra("edu.regis.msse655.scis.service.extra.PROGRAMID", 4L); // This is the MSCC program
         startService(intent);

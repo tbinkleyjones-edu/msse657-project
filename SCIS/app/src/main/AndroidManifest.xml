@@ -63,7 +63,7 @@
         </activity>
 
         <service
-            android:name="edu.regis.msse657.scis.service.ProgramAndCoursesIntentService"
+            android:name=".service.ProgramAndCourseIntentService"
             android:exported="false" >
         </service>
 

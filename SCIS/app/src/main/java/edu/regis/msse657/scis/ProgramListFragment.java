@@ -18,7 +18,7 @@ import java.util.List;
 import edu.regis.msse657.scis.components.ProgramArrayAdapter;
 import edu.regis.msse657.scis.model.Program;
 import edu.regis.msse657.scis.service.GetProgramsReceiver;
-import edu.regis.msse657.scis.service.ProgramAndCoursesIntentService;
+import edu.regis.msse657.scis.service.ProgramAndCourseIntentService;
 
 /**
  * A list fragment representing a list of ProgramList.
@@ -90,7 +90,7 @@ public class ProgramListFragment extends ListFragment {
         });
 
         // Send a requst for program data to the service.
-        ProgramAndCoursesIntentService.startActionGetPrograms(this.getContext());
+        ProgramAndCourseIntentService.startActionGetPrograms(this.getContext());
     }
 
     @Override

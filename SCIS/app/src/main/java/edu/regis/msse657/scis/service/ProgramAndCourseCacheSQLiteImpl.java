@@ -11,7 +11,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,13 +18,13 @@ import java.util.List;
 
 import edu.regis.msse657.scis.model.Course;
 import edu.regis.msse657.scis.model.Program;
-import edu.regis.msse657.scis.service.ProgramAndCoursesContract.ProgramTable;
-import edu.regis.msse657.scis.service.ProgramAndCoursesContract.CourseTable;
+import edu.regis.msse657.scis.service.ProgramAndCourseContract.ProgramTable;
+import edu.regis.msse657.scis.service.ProgramAndCourseContract.CourseTable;
 
 /**
  *
  */
-public class ProgramAndCoursesCacheSQLiteImpl extends SQLiteOpenHelper implements IProgramAndCoursesCache {
+public class ProgramAndCourseCacheSQLiteImpl extends SQLiteOpenHelper implements IProgramAndCourseCache {
 
     /*
      * SQL queries and statements
@@ -62,8 +61,8 @@ public class ProgramAndCoursesCacheSQLiteImpl extends SQLiteOpenHelper implement
 
     public static final String SQL_SELECT_COURSE_BY_PROGRAM_ID = CourseTable.COLUMN_NAME_PROGRAM_ID + "=?";
 
-    public ProgramAndCoursesCacheSQLiteImpl(Context context) {
-        this(context, ProgramAndCoursesContract.DATABASE_NAME);
+    public ProgramAndCourseCacheSQLiteImpl(Context context) {
+        this(context, ProgramAndCourseContract.DATABASE_NAME);
     }
 
     /**
@@ -72,8 +71,8 @@ public class ProgramAndCoursesCacheSQLiteImpl extends SQLiteOpenHelper implement
      * @param context
      * @param name
      */
-    protected ProgramAndCoursesCacheSQLiteImpl(Context context, String name) {
-        super(context, name, null, ProgramAndCoursesContract.DATABASE_VERSION);
+    protected ProgramAndCourseCacheSQLiteImpl(Context context, String name) {
+        super(context, name, null, ProgramAndCourseContract.DATABASE_VERSION);
     }
 
     /*

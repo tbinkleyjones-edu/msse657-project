@@ -10,7 +10,6 @@ import android.app.Application;
 import android.content.Context;
 import android.test.ApplicationTestCase;
 import android.test.suitebuilder.annotation.MediumTest;
-import android.util.Log;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,8 +23,8 @@ import edu.regis.msse657.scis.model.Program;
 public class ProgramsAndCoursesCacheSQLiteImplTest extends ApplicationTestCase<Application> {
 
     // use an in memory database for each run to avoid deleting production data, and to avoid side effects between test runs.
-    private static class ProgramAndCoursesCacheInMemorySQLiteImpl extends ProgramAndCoursesCacheSQLiteImpl {
-        protected ProgramAndCoursesCacheInMemorySQLiteImpl(Context context) {
+    private static class ProgramAndCourseCacheInMemorySQLiteImpl extends ProgramAndCourseCacheSQLiteImpl {
+        protected ProgramAndCourseCacheInMemorySQLiteImpl(Context context) {
             super(context, null);
         }
     }
@@ -42,7 +41,7 @@ public class ProgramsAndCoursesCacheSQLiteImplTest extends ApplicationTestCase<A
     @MediumTest
     public void testServiceOperations() throws Exception {
 
-        ProgramAndCoursesCacheSQLiteImpl cacheInstance = new ProgramAndCoursesCacheInMemorySQLiteImpl(getContext());
+        ProgramAndCourseCacheSQLiteImpl cacheInstance = new ProgramAndCourseCacheInMemorySQLiteImpl(getContext());
         assertEquals(0, cacheInstance.retrieveAllPrograms().size());  // expect to be empty initially
         assertEquals(0, cacheInstance.retrieveCoursesForProgram(1).size());  // expect to be empty initially
 

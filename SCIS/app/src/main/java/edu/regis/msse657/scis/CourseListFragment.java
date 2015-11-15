@@ -20,7 +20,7 @@ import edu.regis.msse657.scis.components.CourseArrayAdapter;
 import edu.regis.msse657.scis.model.Course;
 import edu.regis.msse657.scis.model.Program;
 import edu.regis.msse657.scis.service.GetCoursesReceiver;
-import edu.regis.msse657.scis.service.ProgramAndCoursesIntentService;
+import edu.regis.msse657.scis.service.ProgramAndCourseIntentService;
 
 /**
  * A list fragment representing a list of Courses. This fragment
@@ -108,7 +108,7 @@ public class CourseListFragment extends ListFragment {
                 });
 
         // Send a request for data to the intent service.
-        ProgramAndCoursesIntentService.startActionGetCourses(this.getContext(), program.getId());
+        ProgramAndCourseIntentService.startActionGetCourses(this.getContext(), program.getId());
     }
 
     @Override

@@ -23,7 +23,7 @@ import edu.regis.msse657.scis.service.tasks.GetProgramsTask;
  * a service on a separate handler thread. This class uses HttpTasks to retrieve
  * data from the Regis web service.
  */
-public class ProgramAndCoursesIntentService extends IntentService {
+public class ProgramAndCourseIntentService extends IntentService {
 
     public static final String HOST = "http://regisscis.net";
     public static final String PROGRAMS = HOST + "/Regis2/webresources/regis2.program";
@@ -42,7 +42,7 @@ public class ProgramAndCoursesIntentService extends IntentService {
      * @param context context used to start the serivce.
      */
     public static void startActionGetPrograms(Context context) {
-        Intent intent = new Intent(context, ProgramAndCoursesIntentService.class);
+        Intent intent = new Intent(context, ProgramAndCourseIntentService.class);
         intent.setAction(ACTION_GETPROGRAMS);
         context.startService(intent);
     }
@@ -56,14 +56,14 @@ public class ProgramAndCoursesIntentService extends IntentService {
      * @param programId programId used to retrieve course data.
      */
     public static void startActionGetCourses(Context context, long programId) {
-        Intent intent = new Intent(context, ProgramAndCoursesIntentService.class);
+        Intent intent = new Intent(context, ProgramAndCourseIntentService.class);
         intent.setAction(ACTION_GETCOURSES);
         intent.putExtra(EXTRA_PROGRAMID, programId);
         context.startService(intent);
     }
 
-    public ProgramAndCoursesIntentService() {
-        super("ProgramAndCoursesIntentService");
+    public ProgramAndCourseIntentService() {
+        super("ProgramAndCourseIntentService");
     }
 
     /**
@@ -91,7 +91,7 @@ public class ProgramAndCoursesIntentService extends IntentService {
     private void handleActionGetPrograms() {
         Log.i("ProgramsAndCoursesIS", "handleActionGetPrograms()");
         List<Program> programs = new GetProgramsTask().execute(PROGRAMS);
-        GetProgramsReceiver.sendBroadcastGetPrograms(ProgramAndCoursesIntentService.this, programs);
+        GetProgramsReceiver.sendBroadcastGetPrograms(ProgramAndCourseIntentService.this, programs);
     }
 
     /**
@@ -101,6 +101,6 @@ public class ProgramAndCoursesIntentService extends IntentService {
     private void handleActionGetCourses(long programId) {
         Log.i("ProgramsAndCoursesIS", "handleActionGetCourses()");
         List<Course> courses = new GetCoursesTask(programId).execute(COURSES);
-        GetCoursesReceiver.sendBroadcastGetCourses(ProgramAndCoursesIntentService.this, courses);
+        GetCoursesReceiver.sendBroadcastGetCourses(ProgramAndCourseIntentService.this, courses);
     }
 }

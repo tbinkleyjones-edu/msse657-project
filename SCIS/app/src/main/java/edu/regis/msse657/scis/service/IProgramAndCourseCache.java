@@ -15,7 +15,7 @@ import edu.regis.msse657.scis.model.Program;
 /**
  * A data repository that provides a cached of Program and Course objects.
  */
-public interface IProgramAndCoursesCache {
+public interface IProgramAndCourseCache {
 
     /**
      * Retrieves every Program object in the cache.
