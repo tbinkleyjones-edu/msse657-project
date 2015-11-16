@@ -58,11 +58,18 @@ public class GetProgramsReceiver extends BroadcastReceiver {
      */
     @Override
     public void onReceive(Context context, Intent intent) {
-        IProgramAndCourseCache cache = new ProgramAndCourseCacheContentProviderImpl(context.getContentResolver());
-        List<Program> programs = cache.retrieveAllPrograms();
+        List<Program> programs = getCache(context).retrieveAllPrograms();
         callback.execute(programs);
     }
 
+    /**
+     * Wraps construction of an IProgramAndCourseCache to enable unit testing
+     * @param context
+     * @return
+     */
+    protected IProgramAndCourseCache getCache(Context context) {
+        return new ProgramAndCourseCacheContentProviderImpl(context.getContentResolver());
+    }
 
     /**
      * Callback that will receive the retrieved Program objects.

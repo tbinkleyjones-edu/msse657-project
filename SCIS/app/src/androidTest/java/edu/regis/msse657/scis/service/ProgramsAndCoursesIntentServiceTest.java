@@ -102,10 +102,6 @@ public class ProgramsAndCoursesIntentServiceTest extends ServiceTestCase<Program
         Intent broadcastIntent = broadcastIntents[0];
         assertNotNull(broadcastIntent);
         assertEquals("edu.regis.msse655.scis.service.action.PROGRAMS_RESULT", broadcastIntent.getAction());
-
-        ArrayList<Program> programs = (ArrayList<Program>) broadcastIntent.getSerializableExtra("edu.regis.msse655.scis.service.extra.PROGRAMS");
-        assertEquals(10, programs.size()); // Regis' web service always returns the same number of things.
-
     }
 
     /**
@@ -144,8 +140,7 @@ public class ProgramsAndCoursesIntentServiceTest extends ServiceTestCase<Program
         assertNotNull(broadcastIntent);
         assertEquals("edu.regis.msse655.scis.service.action.COURSES_RESULT", broadcastIntent.getAction());
 
-        ArrayList<Course> courses = (ArrayList<Course>) broadcastIntent.getSerializableExtra("edu.regis.msse655.scis.service.extra.COURSES");
-        assertEquals(1, courses.size()); // Regis' web service always returns one course per program
-        assertTrue(courses.get(0).getName().startsWith("MSCC"));
+        long programId = broadcastIntent.getLongExtra("edu.regis.msse655.scis.service.extra.PROGRAMID", -1);
+        assertEquals(4L, programId); // Regis' web service always returns one course per program
     }
 }

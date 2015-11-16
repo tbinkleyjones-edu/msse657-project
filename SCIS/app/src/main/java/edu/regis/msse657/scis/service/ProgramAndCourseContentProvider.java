@@ -36,19 +36,19 @@ public class ProgramAndCourseContentProvider extends ContentProvider {
 
     @Override
     public int delete(Uri uri, String selection, String[] selectionArgs) {
-        // Only the /* uri is accepted; error if a selection is also sent.
+        // Only the uri is accepted; error if a selection is also sent.
         if (selection != null || selectionArgs != null) {
             throw new IllegalArgumentException("Selection is not supported");
         }
 
-        if (ProgramAndCourseContract.URI_CLEAR_CACHE.equals(uri.toString())) {
+        if (ProgramAndCourseContract.URI_CLEAR_CACHE.equals(uri)) {
             return service.clear();
         } else if (uri.toString().startsWith(ProgramTable.TABLE_URI.toString())) {
             return service.deleteProgram(ContentUris.parseId(uri));
         } else if (uri.toString().startsWith(CourseTable.TABLE_URI.toString())) {
             return service.deleteCourse(ContentUris.parseId(uri));
         } else {
-            throw new IllegalArgumentException("Only " + ProgramAndCourseContract.URI_CLEAR_CACHE + " is supported.");
+            throw new IllegalArgumentException(uri + " is not supported");
         }
     }
 

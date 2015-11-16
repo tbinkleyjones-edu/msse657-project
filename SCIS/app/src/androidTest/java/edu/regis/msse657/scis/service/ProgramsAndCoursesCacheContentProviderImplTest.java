@@ -42,8 +42,10 @@ public class ProgramsAndCoursesCacheContentProviderImplTest extends ApplicationT
     @MediumTest
     public void testCacheOperations() throws Exception {
 
-        ContentResolver contentResolver = new MockContentResolver();
-        IProgramAndCourseCache cacheInstance = new ProgramAndCourseCacheContentProviderImpl(contentResolver);
+        // TODO: use mock resolver that returns data and saves parameters.
+        //ContentResolver contentResolver = new MockContentResolver();
+        IProgramAndCourseCache cacheInstance = new ProgramAndCourseCacheContentProviderImpl(getContext().getContentResolver());
+        cacheInstance.clear();
 
         assertEquals(0, cacheInstance.retrieveAllPrograms().size());  // expect to be empty initially
         assertEquals(0, cacheInstance.retrieveCoursesForProgram(1).size());  // expect to be empty initially

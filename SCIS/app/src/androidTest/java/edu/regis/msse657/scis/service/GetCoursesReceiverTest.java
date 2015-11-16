@@ -18,6 +18,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import edu.regis.msse657.scis.model.Course;
+import edu.regis.msse657.scis.model.Program;
 
 /**
  * Test case used to verify GetCourseReceiver.
@@ -39,15 +40,10 @@ public class GetCoursesReceiverTest extends ApplicationTestCase<Application> {
             @Override
             public void sendBroadcast(Intent intent) {
                 assertEquals("edu.regis.msse655.scis.service.action.COURSES_RESULT", intent.getAction());
-                ArrayList<Course> courses = (ArrayList<Course>) intent.getSerializableExtra("edu.regis.msse655.scis.service.extra.COURSES");
-                assertNotNull(courses);
-                assertEquals(1, courses.size());
-                assertEquals(new Course(1, "test course", 1), courses.get(0));
+                long programId = intent.getLongExtra("edu.regis.msse655.scis.service.extra.PROGRAMID", -1);
+                assertEquals(1, programId);
             }
         };
-
-        List<Course> courses = Arrays.asList(new Course(1, "test course", 1));
-
         GetCoursesReceiver.sendBroadcastGetCourses(context, 1);
     }
 
@@ -60,11 +56,39 @@ public class GetCoursesReceiverTest extends ApplicationTestCase<Application> {
         GetCoursesReceiver receiver = new GetCoursesReceiver(new GetCoursesReceiver.CourseCallback() {
             @Override
             public void execute(List<Course> courses) {
-                assertEquals(1, courses.size());
-                assertEquals(new Course(1, "test course", 1), courses.get(0));
+                assertNotNull(courses);
             }
-        });
+        }){
+            @Override
+            protected IProgramAndCourseCache getCache(Context context) {
+                return new IProgramAndCourseCache() {
+                    @Override
+                    public List<Program> retrieveAllPrograms() {
+                        return null;
+                    }
 
+                    @Override
+                    public void cacheProgram(Program program) {
+
+                    }
+
+                    @Override
+                    public List<Course> retrieveCoursesForProgram(long programId) {
+                        return new ArrayList<>();
+                    }
+
+                    @Override
+                    public void cacheCourse(Course course) {
+
+                    }
+
+                    @Override
+                    public int clear() {
+                        return 0;
+                    }
+                };
+            }
+        };
 
         ArrayList<Course> courses = new ArrayList<>();
         courses.add(new Course(1, "test course", 1));
