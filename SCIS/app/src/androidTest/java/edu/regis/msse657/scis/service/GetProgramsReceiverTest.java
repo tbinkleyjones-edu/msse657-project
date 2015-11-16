@@ -54,7 +54,6 @@ public class GetProgramsReceiverTest extends ApplicationTestCase<Application> {
     @SmallTest
     public void testOnReceive() {
 
-        // TODO: use a mock cache
         GetProgramsReceiver receiver = new GetProgramsReceiver(new GetProgramsReceiver.ProgramCallback() {
             @Override
             public void execute(List<Program> programs) {

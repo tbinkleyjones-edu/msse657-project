@@ -19,7 +19,7 @@ import edu.regis.msse657.scis.model.Programs;
 /**
  * A test case to verify ProgramsAndCoursesCacheSioImpl.
  */
-public class ProgramsAndCoursesCacheSQLiteImplTest extends ApplicationTestCase<Application> {
+public class ProgramsAndCoursesServiceSQLiteImplTest extends ApplicationTestCase<Application> {
 
     public static final String[] SQL_COLUMNS_PROGRAM = ProgramAndCourseCacheContentProviderImpl.SQL_COLUMNS_PROGRAM;
     public static final String[] SQL_COLUMNS_COURSE = ProgramAndCourseCacheContentProviderImpl.SQL_COLUMNS_COURSE;
@@ -31,7 +31,7 @@ public class ProgramsAndCoursesCacheSQLiteImplTest extends ApplicationTestCase<A
         }
     }
 
-    public ProgramsAndCoursesCacheSQLiteImplTest() {
+    public ProgramsAndCoursesServiceSQLiteImplTest() {
         super(Application.class);
     }
 

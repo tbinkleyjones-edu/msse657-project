@@ -89,6 +89,9 @@ public class ProgramsAndCoursesIntentServiceTest extends ServiceTestCase<Program
 
         setContext(context);
 
+        // Delete any existing programs that may be in the database.
+        new ProgramAndCourseServiceSQLiteImpl(context).clear();
+
         Intent intent = new Intent(getContext(), ProgramAndCourseIntentService.class);
         intent.setAction("edu.regis.msse655.scis.service.action.PROGRAMS");
 
@@ -125,6 +128,9 @@ public class ProgramsAndCoursesIntentServiceTest extends ServiceTestCase<Program
         };
 
         setContext(context);
+
+        // Delete any existing courses that may be in the database.
+        new ProgramAndCourseServiceSQLiteImpl(context).clear();
 
         Intent intent = new Intent(getContext(), ProgramAndCourseIntentService.class);
         intent.setAction("edu.regis.msse655.scis.service.action.COURSES");
