@@ -39,7 +39,7 @@ public class CourseDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent detailIntent = new Intent(CourseDetailActivity.this, ShareBarActivity.class);
-                //detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_ID, id); // TODO: add the id of the program
+                detailIntent.putExtra(ShareBarActivity.ARG_ITEM_STATUS, getIntent().getStringExtra(CourseDetailFragment.ARG_ITEM_NAME));
                 startActivity(detailIntent);
             }
         });

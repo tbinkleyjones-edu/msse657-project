@@ -57,8 +57,11 @@ public class CourseListActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = getIntent();
+                Program program = (Program)intent.getSerializableExtra(IntentConstants.PROGRAM);
+
                 Intent detailIntent = new Intent(CourseListActivity.this, ShareBarActivity.class);
-                //detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_ID, id); // TODO: add the id of the program
+                detailIntent.putExtra(ShareBarActivity.ARG_ITEM_STATUS, program.getName());
                 startActivity(detailIntent);
             }
         });

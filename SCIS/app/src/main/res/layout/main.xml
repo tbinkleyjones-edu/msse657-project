@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
 ===========================================================================
  Copyright (c) 2012 Three Pillar Global Inc. http://threepillarglobal.com
 
@@ -24,99 +23,93 @@
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#000000"
-    >
-    <LinearLayout 
-    android:orientation="horizontal"
-    android:id="@+id/topbar"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:padding="7dp"
-    android:background="@drawable/blue_gradient"
-    >   
-	    <TextView 
-			android:id="@+id/textview"
-			android:layout_height="wrap_content"
-			android:layout_width="wrap_content"
-			android:layout_gravity="center_vertical"
-			android:textColor="#ffffff"
-			android:textSize="14sp"
-			android:text="Share Bar"
-			android:textStyle="bold"
-		/>
-	</LinearLayout>
-	<View
+    android:layout_height="fill_parent">
+
+    <LinearLayout
+        android:id="@+id/topbar"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="7dp"
+        android:background="?attr/colorPrimary">
+
+        <TextView
+            android:id="@+id/textview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/title_activity_share"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/regisCream"/>
+    </LinearLayout>
+
+    <View
         android:id="@+id/view01"
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:layout_below="@+id/topbar"
-        android:background="#313437" />
-    
-    <TextView 
-		android:id="@+id/text"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:textSize="14sp"
-		android:textStyle="bold"
-		android:layout_marginLeft="10dp"
-		android:layout_marginRight="10dp"
-		android:layout_marginTop="20dp"
-		android:textColor="#ffffff"
-		android:layout_below="@+id/view01"
-	/>
-    <TextView 
-		android:id="@+id/dialogTitle"
-		android:layout_height="wrap_content"
-		android:layout_width="fill_parent"
-		android:textColor="#ffffff"
-		android:textSize="14sp"
-		android:text="Share Update"
-		android:layout_marginTop="30dp"
-		android:layout_marginLeft="10dp"
-		android:layout_marginRight="10dp"
-		android:textStyle="bold"
-		android:layout_below="@+id/text"	
-	/>  
-	<EditText 
-	    android:id="@+id/editTxt"
-		android:layout_height="wrap_content"
-		android:layout_width="fill_parent"
-		android:textColor="#000000"
-		android:textSize="12sp"
-		android:layout_margin="5dp"
-		android:hint="Enter Message"
-		android:layout_marginLeft="10dp"
-		android:layout_marginRight="10dp"
-		android:layout_below="@+id/dialogTitle"
-	/>
-	<Button 
-		android:id="@+id/update"
-		android:layout_height="wrap_content"
-		android:layout_width="wrap_content"
-		android:background="#147af8"
-		android:textColor="#ffffff"
-		android:padding="5dp"
-		android:textSize="12sp"
-		android:text="Update"
-		android:layout_alignRight="@+id/editTxt"
-		android:layout_marginRight="10dp"
-		android:layout_below="@+id/editTxt"
-	/>
-    <RelativeLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/layout_gradient"
-    android:layout_alignParentBottom="true"
-    >    
-    <LinearLayout 
-    android:id="@+id/linearbar"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_centerInParent="true"
-	android:layout_marginTop="20dp"
-    >                
-	</LinearLayout>
+        android:layout_below="@+id/topbar" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/view01"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="20dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:text="@string/sharedescription"/>
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="30dp"
+        android:text="@string/status"
+        android:textSize="14sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editTxt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/dialogTitle"
+        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Enter Message"
+        android:textSize="12sp" />
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/editTxt"
+        android:layout_below="@+id/editTxt"
+        android:layout_marginRight="10dp"
+        android:background="@color/regisGold"
+        android:padding="5dp"
+        android:text="Update"
+        android:textSize="12sp" />
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/layout_gradient">
+
+        <LinearLayout
+            android:id="@+id/linearbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal"></LinearLayout>
     </RelativeLayout>
 </RelativeLayout>

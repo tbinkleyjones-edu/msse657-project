@@ -63,6 +63,8 @@ import android.widget.Toast;
 
 public class ShareBarActivity extends Activity {
 
+	public static final String ARG_ITEM_STATUS = "status";
+
 	// SocialAuth Component
 	SocialAuthAdapter adapter;
 	boolean status;
@@ -76,9 +78,12 @@ public class ShareBarActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		// Welcome Message
-		TextView textview = (TextView) findViewById(R.id.text);
-		textview.setText("Welcome to SocialAuth Demo. Connect any provider and then press Update button to Share Update.");
+		String status = getIntent().getStringExtra(ARG_ITEM_STATUS);
+
+
+		// Default status message
+		EditText editText = (EditText) findViewById(R.id.editTxt);
+		editText.setText(status + " #thisisregis");
 
 		LinearLayout bar = (LinearLayout) findViewById(R.id.linearbar);
 		bar.setBackgroundResource(R.drawable.bar_gradient);
