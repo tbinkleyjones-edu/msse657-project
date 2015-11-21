@@ -8,7 +8,7 @@
     android:divider="?android:attr/dividerHorizontal"
     android:orientation="horizontal"
     android:showDividers="middle"
-    tools:context="edu.regis.msse655.scis.CourseListActivity">
+    tools:context="edu.regis.msse657.scis.CourseListActivity">
 
     <!--
     This layout is a two-pane layout for the Courses
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/course_list"
-        android:name="edu.regis.msse655.scis.CourseListFragment"
+        android:name="edu.regis.msse657.scis.CourseListFragment"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="1"

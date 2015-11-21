@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="edu.regis.msse655.scis" >
+    package="edu.regis.msse657.scis" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -28,7 +28,7 @@
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="edu.regis.msse655.scis.ProgramListActivity" />
+                android:value="edu.regis.msse657.scis.ProgramListActivity" />
         </activity>
         <activity
             android:name=".CourseDetailActivity"
@@ -37,7 +37,7 @@
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="edu.regis.msse655.scis.CourseListActivity" />
+                android:value="edu.regis.msse657.scis.CourseListActivity" />
         </activity>
         <activity
             android:name=".ShareActivity"
@@ -50,7 +50,7 @@
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="edu.regis.msse655.scis.ProgramListActivity" />
+                android:value="edu.regis.msse657.scis.ProgramListActivity" />
         </activity>
         <activity
             android:name=".ChatActivity"
@@ -59,14 +59,20 @@
             android:theme="@style/AppTheme.NoActionBar" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="edu.regis.msse655.scis.ProgramListActivity" />
+                android:value="edu.regis.msse657.scis.ProgramListActivity" />
         </activity>
 
         <service
-            android:name=".service.ProgramAndCoursesIntentService"
+            android:name=".service.ProgramAndCourseIntentService"
             android:exported="false" >
         </service>
 
+        <provider
+            android:name=".service.ProgramAndCourseContentProvider"
+            android:authorities="edu.regis.msse657.scis.service.programandcoursecontentprovider"
+            android:enabled="true"
+            android:exported="true" >
+        </provider>
     </application>
 
 </manifest>
