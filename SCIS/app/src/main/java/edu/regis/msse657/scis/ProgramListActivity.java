@@ -51,7 +51,7 @@ public class ProgramListActivity extends AppCompatActivity
             @Override
             public void onClick(View view) {
                 // start the course list activity
-                Intent detailIntent = new Intent(ProgramListActivity.this, ShareActivity.class);
+                Intent detailIntent = new Intent(ProgramListActivity.this, ShareBarActivity.class);
                 //detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_ID, id); // TODO: add the id of the program
                 startActivity(detailIntent);
             }

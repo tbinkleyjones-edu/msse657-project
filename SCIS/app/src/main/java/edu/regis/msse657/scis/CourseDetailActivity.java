@@ -38,7 +38,7 @@ public class CourseDetailActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent detailIntent = new Intent(CourseDetailActivity.this, ShareActivity.class);
+                Intent detailIntent = new Intent(CourseDetailActivity.this, ShareBarActivity.class);
                 //detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_ID, id); // TODO: add the id of the program
                 startActivity(detailIntent);
             }
