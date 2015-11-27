@@ -50,9 +50,9 @@ public class ProgramListActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // start the course list activity
-                Intent detailIntent = new Intent(ProgramListActivity.this, ShareActivity.class);
-                //detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_ID, id); // TODO: add the id of the program
+                // start the share activity
+                Intent detailIntent = new Intent(ProgramListActivity.this, ShareBarActivity.class);
+                detailIntent.putExtra(ShareBarActivity.ARG_ITEM_STATUS, "Regis University");
                 startActivity(detailIntent);
             }
         });
