@@ -6,6 +6,7 @@
 
 package edu.regis.msse657.scis;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -26,10 +27,10 @@ import edu.regis.msse657.scis.model.Program;
  * An activity representing a list of ProgramList, which when touched,
  * lead to a {@link CourseListActivity} representing
  * item details.
- * <p>
+ * <p/>
  * The activity makes heavy use of fragments. The list of items is a
  * {@link ProgramListFragment}.
- * <p>
+ * <p/>
  * This activity also implements the required
  * {@link ProgramListFragment.Callbacks} interface
  * to listen for item selections.
@@ -54,6 +55,7 @@ public class ProgramListActivity extends AppCompatActivity
                 Intent detailIntent = new Intent(ProgramListActivity.this, ShareBarActivity.class);
                 detailIntent.putExtra(ShareBarActivity.ARG_ITEM_STATUS, "Regis University");
                 startActivity(detailIntent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 
@@ -109,9 +111,11 @@ public class ProgramListActivity extends AppCompatActivity
         } else if (id == R.id.nav_feedback) {
             Intent detailIntent = new Intent(this, FeedbackActivity.class);
             startActivity(detailIntent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         } else if (id == R.id.nav_chat) {
             Intent detailIntent = new Intent(this, ChatActivity.class);
             startActivity(detailIntent);
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -124,7 +128,7 @@ public class ProgramListActivity extends AppCompatActivity
         // start the course list activity
         Intent detailIntent = new Intent(this, CourseListActivity.class);
         detailIntent.putExtra(IntentConstants.PROGRAM, program);
-        startActivity(detailIntent);
+        startActivity(detailIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
     }
 
 }
