@@ -74,7 +74,7 @@
         android:textSize="14sp"
         android:textStyle="bold" />
 
-    <TextInputLayout
+    <android.support.design.widget.TextInputLayout
         android:id="@+id/layoutTxt"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -82,12 +82,13 @@
 
         <EditText
             android:id="@+id/editTxt"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_margin="5dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:hint="Enter Message"
             android:textSize="12sp" />
-    </TextInputLayout>
+    </android.support.design.widget.TextInputLayout>
 
     <Button
         android:id="@+id/update"

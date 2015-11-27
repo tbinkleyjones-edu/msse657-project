@@ -156,7 +156,7 @@ public class ShareBarActivity extends Activity {
                     // the same as the last message sent.
                     String status = edit.getText().toString();
 
-                    if (status == "") {
+                    if (status.isEmpty()) {
                         layout.setError("Oops - you forgot to enter a status message.");
                         return;
                     } else if (status.equals(lastMessageSent)) {
