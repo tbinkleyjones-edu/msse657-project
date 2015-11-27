@@ -19,6 +19,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.design.widget.TextInputLayout;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -29,36 +30,36 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * 
+ *
  * Main class of the ShareBar Example for SocialAuth Android SDK. <br>
- * 
+ *
  * The main objective of this example is to create a bar of social media
  * providers Facebook, Twitter and others. It enables user to access the
  * respective provider on single click and update the status.
- * 
+ *
  * The class first creates a bar in main.xml. It then adds bar to SocialAuth
  * Android Library <br>
- * 
+ *
  * Then it adds providers Facebook, Twitter and others to library object by
  * addProvider method and finally enables the providers by calling enable method<br>
- * 
+ *
  * After successful authentication of provider, it receives the response in
  * responseListener and then automatically update status by updatestatus()
  * method.
- * 
+ *
  * It's Primarly use is to share message but developers can use to access other
  * functionalites like getting profile , contacts , sharing images etc.
- * 
+ *
  * Now you can use share -bar to share message via email and mms.See example
  * below
- * 
+ *
  * This example shows how you can use addconfig method to define key and secrets
  * in code.Therefore we have remove oauthconsumers.properties.
- * 
+ *
  * <br>
- * 
+ *
  * @author vineet.aggarwal@3pillarglobal.com
- * 
+ *
  */
 
 public class ShareBarActivity extends Activity {
@@ -72,6 +73,10 @@ public class ShareBarActivity extends Activity {
 	// Android Components
 	Button update;
 	EditText edit;
+    TextInputLayout layout;
+
+    // Remember last message sent
+    String lastMessageSent = null;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -82,8 +87,10 @@ public class ShareBarActivity extends Activity {
 
 
 		// Default status message
-		EditText editText = (EditText) findViewById(R.id.editTxt);
-		editText.setText(status + " #thisisregis");
+        layout = (TextInputLayout) findViewById(R.id.layoutTxt);
+
+		edit = (EditText) findViewById(R.id.editTxt);
+		edit.setText(status + " #thisisregis");
 
 		LinearLayout bar = (LinearLayout) findViewById(R.id.linearbar);
 		bar.setBackgroundResource(R.drawable.bar_gradient);
@@ -120,7 +127,7 @@ public class ShareBarActivity extends Activity {
 
 	/**
 	 * Listens Response from Library
-	 * 
+	 *
 	 */
 
 	private final class ResponseListener implements DialogListener {
@@ -136,7 +143,6 @@ public class ShareBarActivity extends Activity {
 			Toast.makeText(ShareBarActivity.this, providerName + " connected", Toast.LENGTH_SHORT).show();
 
 			update = (Button) findViewById(R.id.update);
-			edit = (EditText) findViewById(R.id.editTxt);
 
 			// Please avoid sending duplicate message. Social Media Providers
 			// block duplicate messages.
@@ -145,12 +151,28 @@ public class ShareBarActivity extends Activity {
 
 				@Override
 				public void onClick(View v) {
+
+                    // Validate the status message. It should not be empty, and it should not be
+                    // the same as the last message sent.
+                    String status = edit.getText().toString();
+
+                    if (status == "") {
+                        layout.setError("Oops - you forgot to enter a status message.");
+                        return;
+                    } else if (status.equals(lastMessageSent)) {
+                        layout.setError("Whoa - you forgot to change your status message.");
+                        return;
+                    }
+
+                    layout.setError(null);
+
 					// Call updateStatus to share message via oAuth providers
 					// adapter.updateStatus(edit.getText().toString(), new
 					// MessageListener(), false);
 
 					// call to update on all connected providers at once
-					adapter.updateStatus(edit.getText().toString(), new MessageListener(), true);
+					adapter.updateStatus(status, new MessageListener(), true);
+                    lastMessageSent = status;
 				}
 			});
 

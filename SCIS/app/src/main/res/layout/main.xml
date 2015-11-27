@@ -29,9 +29,9 @@
         android:id="@+id/topbar"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
         android:orientation="horizontal"
-        android:padding="7dp"
-        android:background="?attr/colorPrimary">
+        android:padding="7dp">
 
         <TextView
             android:id="@+id/textview"
@@ -39,9 +39,9 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="@string/title_activity_share"
+            android:textColor="@color/regisCream"
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:textColor="@color/regisCream"/>
+            android:textStyle="bold" />
     </LinearLayout>
 
     <View
@@ -58,9 +58,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="20dp"
+        android:text="@string/sharedescription"
         android:textSize="14sp"
-        android:textStyle="bold"
-        android:text="@string/sharedescription"/>
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/dialogTitle"
@@ -74,23 +74,27 @@
         android:textSize="14sp"
         android:textStyle="bold" />
 
-    <EditText
-        android:id="@+id/editTxt"
+    <TextInputLayout
+        android:id="@+id/layoutTxt"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/dialogTitle"
-        android:layout_margin="5dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:hint="Enter Message"
-        android:textSize="12sp" />
+        android:layout_below="@+id/dialogTitle">
+
+        <EditText
+            android:id="@+id/editTxt"
+            android:layout_margin="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="Enter Message"
+            android:textSize="12sp" />
+    </TextInputLayout>
 
     <Button
         android:id="@+id/update"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/editTxt"
-        android:layout_below="@+id/editTxt"
+        android:layout_alignRight="@+id/layoutTxt"
+        android:layout_below="@+id/layoutTxt"
         android:layout_marginRight="10dp"
         android:background="@color/regisGold"
         android:padding="5dp"
