@@ -12,8 +12,13 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.EditText;
+
+import edu.regis.msse657.scis.service.tasks.FeedbackTask;
 
 public class FeedbackActivity extends AppCompatActivity {
+
+    private EditText edit;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,11 +31,23 @@ public class FeedbackActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                // Get the text from the view and submit it.
+                String text = edit.getText().toString();
+                if (!text.isEmpty()) {
+                    FeedbackTask feedbackTask = new FeedbackTask(new FeedbackTask.FeedbackCallback() {
+                        @Override
+                        public void execute(String message) {
+                            Snackbar.make(edit, message, Snackbar.LENGTH_LONG).setAction("Feedback", null).show();
+                            edit.setText("");
+                        }
+                    });
+                    feedbackTask.execute(text);
+                }
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        edit = (EditText) findViewById(R.id.editText);
     }
 
 }

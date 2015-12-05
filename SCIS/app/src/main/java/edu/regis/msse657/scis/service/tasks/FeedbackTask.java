@@ -19,11 +19,11 @@ import java.net.Socket;
 /**
  * Created by Tim on 12/5/15.
  */
-public class ChatTask extends AsyncTask<String, Void, String> {
+public class FeedbackTask extends AsyncTask<String, Void, String> {
 
-    private final ChatCallback callback;
+    private final FeedbackCallback callback;
 
-    public ChatTask(ChatCallback callback) {
+    public FeedbackTask(FeedbackCallback callback) {
         this.callback = callback;
     }
 
@@ -59,7 +59,7 @@ public class ChatTask extends AsyncTask<String, Void, String> {
         callback.execute(result);
     }
 
-    public interface ChatCallback {
+    public interface FeedbackCallback {
         void execute(String message);
     }
 }

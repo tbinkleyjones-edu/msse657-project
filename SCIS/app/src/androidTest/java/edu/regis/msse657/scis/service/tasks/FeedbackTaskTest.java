@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Tim on 12/5/15.
  */
-public class ChatTaskTest extends InstrumentationTestCase {
+public class FeedbackTaskTest extends InstrumentationTestCase {
 
     /**
      * An integration test to validate communication with the live Programs REST end point.
@@ -35,7 +35,7 @@ public class ChatTaskTest extends InstrumentationTestCase {
             @Override
             public void run() {
 
-                ChatTask chatTask = new ChatTask(new ChatTask.ChatCallback() {
+                FeedbackTask feedbackTask = new FeedbackTask(new FeedbackTask.FeedbackCallback() {
                     @Override
                     public void execute(String message) {
                         receivedMessage.append(message);
@@ -43,7 +43,7 @@ public class ChatTaskTest extends InstrumentationTestCase {
                     }
                 });
 
-                chatTask.execute("Hello Regis from Tim!");
+                feedbackTask.execute("Hello Regis from Tim!");
             }
         });
 
@@ -51,6 +51,6 @@ public class ChatTaskTest extends InstrumentationTestCase {
          * above with the countDown() or 30 seconds passes and it times out.
 	     */
         signal.await(30, TimeUnit.SECONDS);
-        assertEquals("** Thank you **", receivedMessage.toString()); // Regis' web service always returns ...
+        assertEquals("** Thank you **", receivedMessage.toString()); // Regis' web service always returns '** Thank you **'
     }
 }
