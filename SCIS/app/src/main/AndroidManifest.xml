@@ -62,13 +62,13 @@
             android:label="@string/title_activity_share" />
         <service
             android:name=".service.ProgramAndCourseIntentService"
-            android:exported="false"></service>
+            android:exported="false"/>
 
         <provider
             android:name=".service.ProgramAndCourseContentProvider"
             android:authorities="edu.regis.msse657.scis.service.programandcoursecontentprovider"
             android:enabled="true"
-            android:exported="true"></provider>
+            android:exported="true"/>
     </application>
 
 </manifest>

@@ -15,4 +15,6 @@
     <string name="title_activity_chat">Chat</string>
     <string name="status">Status</string>
     <string name="sharedescription">Share your Regis experience! #thisisregis</string>
+    <string name="waitTitle">Please wait</string>
+    <string name="waitMessage">Retrieving data from the Regis course catalog.</string>
 </resources>

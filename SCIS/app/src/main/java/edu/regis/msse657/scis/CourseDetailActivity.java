@@ -6,6 +6,7 @@
 
 package edu.regis.msse657.scis;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -41,6 +42,7 @@ public class CourseDetailActivity extends AppCompatActivity {
                 Intent detailIntent = new Intent(CourseDetailActivity.this, ShareBarActivity.class);
                 detailIntent.putExtra(ShareBarActivity.ARG_ITEM_STATUS, getIntent().getStringExtra(CourseDetailFragment.ARG_ITEM_NAME));
                 startActivity(detailIntent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 

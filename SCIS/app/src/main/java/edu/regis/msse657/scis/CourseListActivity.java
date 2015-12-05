@@ -6,6 +6,7 @@
 
 package edu.regis.msse657.scis;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -63,6 +64,7 @@ public class CourseListActivity extends AppCompatActivity
                 Intent detailIntent = new Intent(CourseListActivity.this, ShareBarActivity.class);
                 detailIntent.putExtra(ShareBarActivity.ARG_ITEM_STATUS, program.getName());
                 startActivity(detailIntent);
+                overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
         // Show the Up button in the action bar.
@@ -136,7 +138,7 @@ public class CourseListActivity extends AppCompatActivity
             detailIntent.putExtra(IntentConstants.PROGRAM, program);
             detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_ID, course.getId());
             detailIntent.putExtra(CourseDetailFragment.ARG_ITEM_NAME, course.getName());
-            startActivity(detailIntent);
+            startActivity(detailIntent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle());
         }
     }
 }

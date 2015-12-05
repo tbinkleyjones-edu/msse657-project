@@ -7,6 +7,7 @@
 package edu.regis.msse657.scis;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
@@ -78,6 +79,10 @@ public class ProgramListFragment extends ListFragment {
         );
         setListAdapter(arrayAdapter);
 
+        // Display a progress dialog while waiting for the data to be retrieved from the web service
+        final ProgressDialog progressDialog = ProgressDialog.show(this.getContext(),
+                getString(R.string.waitTitle), getString(R.string.waitMessage), true);
+
         // Create the BroadcastReceiver used to receive program data in response to requests
         // sent to the program and course intent service. The receiver is registered in onResume
         // and unregistered in onPause.
@@ -86,6 +91,7 @@ public class ProgramListFragment extends ListFragment {
             public void execute(List<Program> programs) {
                 arrayAdapter.clear();
                 arrayAdapter.addAll(programs);
+                progressDialog.dismiss();
             }
         });
 
