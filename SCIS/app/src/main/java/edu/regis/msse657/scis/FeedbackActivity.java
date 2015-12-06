@@ -27,6 +27,8 @@ public class FeedbackActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        edit = (EditText) findViewById(R.id.editText);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,6 +39,7 @@ public class FeedbackActivity extends AppCompatActivity {
                     FeedbackTask feedbackTask = new FeedbackTask(new FeedbackTask.FeedbackCallback() {
                         @Override
                         public void execute(String message) {
+                            // Display a toast with the responses and clear the edit box.
                             Snackbar.make(edit, message, Snackbar.LENGTH_LONG).setAction("Feedback", null).show();
                             edit.setText("");
                         }
@@ -46,8 +49,5 @@ public class FeedbackActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        edit = (EditText) findViewById(R.id.editText);
     }
-
 }

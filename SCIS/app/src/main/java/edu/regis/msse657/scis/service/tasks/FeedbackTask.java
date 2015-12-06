@@ -17,16 +17,30 @@ import java.net.InetAddress;
 import java.net.Socket;
 
 /**
- * Created by Tim on 12/5/15.
+ * An async task used to send feedback to the Regis feedback service.
+ * <p>
+ * The task opens a socket to the server, posts a feedback message, retrieves a response message,
+ * and finally closes the socket. The response message is returned to the caller via
+ * a callback interface. The task's execute method accepts a single String parameter, which is
+ * used as the feedback message.
  */
 public class FeedbackTask extends AsyncTask<String, Void, String> {
 
     private final FeedbackCallback callback;
 
+    /**
+     * Constructs a new FeedbackTask.
+     *
+     * @param callback the callback used to return the service's response.
+     */
     public FeedbackTask(FeedbackCallback callback) {
         this.callback = callback;
     }
 
+    /**
+     * @param params expected to contain a single String value, which is used as the feedback message.
+     * @return
+     */
     @Override
     protected String doInBackground(String... params) {
         StringBuilder result = new StringBuilder();
@@ -59,7 +73,16 @@ public class FeedbackTask extends AsyncTask<String, Void, String> {
         callback.execute(result);
     }
 
+    /**
+     * The callback interface used to return the service's response to the caller.
+     */
     public interface FeedbackCallback {
+
+        /**
+         * Called by the AsyncTask's onPostExecute withe the service's response message.
+         *
+         * @param message
+         */
         void execute(String message);
     }
 }

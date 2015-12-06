@@ -13,15 +13,11 @@ import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
 
-/**
- * Created by Tim on 12/5/15.
- */
 public class FeedbackTaskTest extends InstrumentationTestCase {
 
     /**
-     * An integration test to validate communication with the live Programs REST end point.
-     *
-     * @throws Throwable
+     * An integration test that for FeedbackTask, where TCP Sockets are used to connect to the live
+     * Regis feedback service.
      */
     @LargeTest
     public void testGetPrograms() throws Throwable {
